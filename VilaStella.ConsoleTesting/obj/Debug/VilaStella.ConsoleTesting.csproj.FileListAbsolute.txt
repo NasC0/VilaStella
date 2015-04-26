@@ -3,3 +3,4 @@ C:\Projects\VilaStella\VilaStella.ConsoleTesting\bin\Debug\VilaStella.ConsoleTes
 C:\Projects\VilaStella\VilaStella.ConsoleTesting\bin\Debug\VilaStella.ConsoleTesting.pdb
 C:\Projects\VilaStella\VilaStella.ConsoleTesting\obj\Debug\VilaStella.ConsoleTesting.exe
 C:\Projects\VilaStella\VilaStella.ConsoleTesting\obj\Debug\VilaStella.ConsoleTesting.pdb
+C:\Projects\VilaStella\VilaStella.ConsoleTesting\obj\Debug\VilaStella.ConsoleTesting.csprojResolveAssemblyReference.cache

@@ -42,5 +42,10 @@ namespace VilaStella.WebAdminClient.Controllers
 
             return PartialView("_Gallery", images);
         }
+
+        public ActionResult RenderReservation()
+        {
+            return PartialView("_Reservation");
+        }
     }
 }

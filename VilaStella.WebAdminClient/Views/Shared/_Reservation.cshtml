@@ -7,49 +7,44 @@
             <h4 class="modal-title" id="myModalLabel">Резервации</h4>
         </div>
         <div class="modal-body">
-            @using (Ajax.BeginForm("Add", "Reservations", new AjaxOptions
+            @using (Ajax.BeginForm("Add", "Reservations", new { area = "Admin" }, new AjaxOptions
             {
                 InsertionMode = InsertionMode.Replace,
                 HttpMethod = "POST"
-            }, new { area = "Admin" }))
+            }, new { @class = "form-horizontal" }))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
 
-                <div class="form-control">
-                    @Html.LabelFor(x => x.FirstName, "Име")
-                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control input-small" })
-                    @Html.ValidationMessageFor(x => x.FirstName, "Невалидно име")
-                </div>
+    <div class="control-group">
+        @Html.LabelFor(x => x.FirstName, "Име")
+        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control input-small" })
+    </div>
 
-                <div class="form-control">
-                    @Html.LabelFor(x => x.LastName, "Фамилия")
-                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control input-small" })
-                    @Html.ValidationMessageFor(x => x.LastName, "Невалидна фамилия")
-                </div>
+    <div class="control-group">
+        @Html.LabelFor(x => x.LastName, "Фамилия")
+        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control input-small" })
+    </div>
 
-                <div class="form-control">
-                    @Html.LabelFor(x => x.Email, "E-Mail")
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-small" })
-                    @Html.ValidationMessageFor(x => x.Email, "Невалиден email")
-                </div>
+    <div class="control-group">
+        @Html.LabelFor(x => x.Email, "E-Mail")
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-small" })
+    </div>
 
-                <div class="form-control">
-                    @Html.LabelFor(x => x.Phone, "Телефон")
-                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
-                    @Html.ValidationMessageFor(x => x.Phone, "Невалиден телефонен номер")
-                </div>
+    <div class="control-group">
+        @Html.LabelFor(x => x.Phone, "Телефон")
+        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
+    </div>
 
-                <div class="form-control">
-                    @Html.LabelFor(x => x.Phone, "Телефон")
-                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
-                    @Html.ValidationMessageFor(x => x.Phone, "Невалиден телефонен номер")
-                </div>
+    <div class="control-group">
+        @Html.LabelFor(x => x.Phone, "Телефон")
+        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
+    </div>
 
-                <div class="form-control">
-                    @Html.LabelFor(x => x.Phone, "Телефон")
-                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
-                    @Html.ValidationMessageFor(x => x.Phone, "Невалиден телефонен номер")
-                </div>
+    <div class="control-group">
+        @Html.LabelFor(x => x.Phone, "Телефон")
+        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
+    </div>
             }
         </div>
         <div class="modal-footer">
