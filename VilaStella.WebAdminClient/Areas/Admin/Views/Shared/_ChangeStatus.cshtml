@@ -1,0 +1,5 @@
+﻿@model  VilaStella.WebAdminClient.Areas.Admin.ViewModels.StatusChangeInputModel
+
+@Html.AntiForgeryToken()
+@Html.TextBoxFor(x => x.ID, new { @class = "hidden" })
+@Html.EditorFor(x => x.Status)

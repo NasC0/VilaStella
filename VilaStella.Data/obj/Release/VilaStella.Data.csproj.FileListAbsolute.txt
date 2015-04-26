@@ -1,0 +1,16 @@
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\VilaStella.Data.dll.config
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\VilaStella.Data.dll
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\VilaStella.Data.pdb
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\EntityFramework.dll
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\EntityFramework.SqlServer.dll
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\Microsoft.AspNet.Identity.Core.dll
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\VilaStella.Models.dll
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\VilaStella.Models.pdb
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\EntityFramework.xml
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\EntityFramework.SqlServer.xml
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\Microsoft.AspNet.Identity.Core.xml
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\obj\Release\VilaStella.Data.csprojResolveAssemblyReference.cache
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\obj\Release\VilaStella.Data.dll
+D:\Copy\Projects\Side_Stuff\VilaRoza\VilaStella.Data\obj\Release\VilaStella.Data.pdb

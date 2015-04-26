@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "jQuery File Upload Demo with Backload - Basic Plus version";
+}
+
+@section styles { 
+    <!-- We use Backloads. bundeling feature to register only those client side javascript and style files of the jQuery File Upload Plugin that are needed  -->
+    @Styles.Render("~/bundles/fileupload/bootstrap/BasicPlus/css")
+
+    <!-- Optional: Some styles for this demo page -->
+    <link href="~/Content/demos.bootstrap.styles.css" rel="stylesheet" />
+}    
+    
+@section scripts {
+    <!-- We use Backloads. bundeling feature to register only those client side javascript and style files of the jQuery File Upload Plugin that are needed  -->
+    @Scripts.Render("~/bundles/fileupload/bootstrap/BasicPlus/js")
+
+    <!-- Initialize the jQuery File Upload Plugin -->
+    <script src="~/Scripts/demos.bootstrap.basicplus.js"></script>
+}
+
+
+<!-- The fileinput-button span is used to style the file input field as button -->
+<span class="btn btn-success fileinput-button">
+    <i class="icon-plus icon-white"></i>
+    <span>Add files...</span>
+    <!-- The file input field used as target for the file upload widget -->
+    <input id="fileupload" type="file" name="files[]" multiple>
+</span>
+<br>
+<br>
+<!-- The global progress bar -->
+<div id="progress" class="progress progress-success progress-striped">
+    <div class="bar"></div>
+</div>
+<!-- The container for the uploaded files -->
+<div id="files" class="files"></div>
+<br>

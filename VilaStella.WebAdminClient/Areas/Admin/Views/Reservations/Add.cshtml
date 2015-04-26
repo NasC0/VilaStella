@@ -1,0 +1,89 @@
+﻿@model VilaStella.WebAdminClient.Areas.Admin.ViewModels.ReservationsInputModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Add", "Reservations", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.FirstName)
+            @Html.EditorFor(x => x.FirstName, new { htmlAttributes = new { @class = "form-control input-small" } })
+            @Html.ValidationMessageFor(x => x.FirstName)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.LastName)
+            @Html.EditorFor(x => x.LastName, new { htmlAttributes = new { @class = "form-control input-small" } })
+            @Html.ValidationMessageFor(x => x.LastName)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.Email)
+            @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @class = "form-control input-small" } })
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.Phone)
+            @Html.EditorFor(x => x.Phone, new { htmlAttributes = new { @class = "form-control input-small" } })
+            @Html.ValidationMessageFor(x => x.Phone)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.From)
+            @Html.EditorFor(x => x.From)
+            @Html.ValidationMessageFor(x => x.From)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.To)
+            @Html.EditorFor(x => x.To)
+            @Html.ValidationMessageFor(x => x.To)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.PartySize)
+            @Html.EditorFor(x => x.PartySize, new { htmlAttributes = new { @class = "form-control input-small date-picker" } })
+            @Html.ValidationMessageFor(x => x.PartySize)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(x => x.Status)
+            @Html.EditorFor(x => x.Status, new { htmlAttributes = new { @class = "form-control input-small date-picker" } })
+            @Html.ValidationMessageFor(x => x.Status)
+        </div>
+
+        <input type="submit" />
+    }
+</div>
+
+@section scripts{
+    <script src="~/Scripts/"></script>
+
+    <script>
+        $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy' });
+
+        jQuery(function ($) {
+            $.validator.addMethod('date',
+            function (value, element) {
+                if (this.optional(element)) {
+                    return true;
+                }
+
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd-mm-yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+            });
+        });
+    </script>
+}

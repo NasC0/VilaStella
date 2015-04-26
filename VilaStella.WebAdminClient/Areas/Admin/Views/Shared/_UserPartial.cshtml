@@ -1,0 +1,9 @@
+﻿@if (Request.IsAuthenticated)
+{
+    <a href="#" class="page-scroll logout-btn">Изход</a>
+    
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "logout-form" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+}

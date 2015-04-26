@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VilaStella.WebClient", "VilaRoza.WebClient\VilaStella.WebClient.csproj", "{54AF6DC9-4E01-46EF-83FF-68B25E5BE78F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VilaStella.WebAdminClient", "VilaStella.WebAdminClient\VilaStella.WebAdminClient.csproj", "{7338C05E-5A58-4B48-AF1A-DA875AF8793F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VilaStella.Data", "VilaStella.Data\VilaStella.Data.csproj", "{3EE046DA-A6CC-4726-8AA4-E0070DE45E89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VilaStella.Models", "VilaStella.Models\VilaStella.Models.csproj", "{29BA0875-6A8D-4500-A944-28F8926092BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{03AF8697-AF91-47C8-8166-616186F1AB82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E57449F8-ACDC-4CB7-B22B-7EE3422221C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deprecated", "Deprecated", "{5FC4635E-03CE-4F55-BCF3-1A69571AF8AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VilaStella.Web.Common", "VilaStella.Web.Common\VilaStella.Web.Common.csproj", "{06C288E6-0998-4799-80E5-867FFA230616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VilaStella.Data.Common", "VilaStella.Data.Common\VilaStella.Data.Common.csproj", "{E6DA4BA5-19ED-4F30-8351-684C0ACBFD4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{3F504F7A-D19C-4DEE-A37E-5C50FC41E543}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{A14A3149-2C5D-40BD-B2E1-176EE646F062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VilaStella.ConsoleTesting", "VilaStella.ConsoleTesting\VilaStella.ConsoleTesting.csproj", "{6F9BB5F0-50F1-487B-9DA2-A842FD139DBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54AF6DC9-4E01-46EF-83FF-68B25E5BE78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54AF6DC9-4E01-46EF-83FF-68B25E5BE78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54AF6DC9-4E01-46EF-83FF-68B25E5BE78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54AF6DC9-4E01-46EF-83FF-68B25E5BE78F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7338C05E-5A58-4B48-AF1A-DA875AF8793F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7338C05E-5A58-4B48-AF1A-DA875AF8793F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7338C05E-5A58-4B48-AF1A-DA875AF8793F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7338C05E-5A58-4B48-AF1A-DA875AF8793F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EE046DA-A6CC-4726-8AA4-E0070DE45E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EE046DA-A6CC-4726-8AA4-E0070DE45E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EE046DA-A6CC-4726-8AA4-E0070DE45E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EE046DA-A6CC-4726-8AA4-E0070DE45E89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29BA0875-6A8D-4500-A944-28F8926092BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29BA0875-6A8D-4500-A944-28F8926092BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29BA0875-6A8D-4500-A944-28F8926092BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29BA0875-6A8D-4500-A944-28F8926092BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06C288E6-0998-4799-80E5-867FFA230616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C288E6-0998-4799-80E5-867FFA230616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06C288E6-0998-4799-80E5-867FFA230616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C288E6-0998-4799-80E5-867FFA230616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6DA4BA5-19ED-4F30-8351-684C0ACBFD4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6DA4BA5-19ED-4F30-8351-684C0ACBFD4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6DA4BA5-19ED-4F30-8351-684C0ACBFD4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6DA4BA5-19ED-4F30-8351-684C0ACBFD4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F504F7A-D19C-4DEE-A37E-5C50FC41E543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F504F7A-D19C-4DEE-A37E-5C50FC41E543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F504F7A-D19C-4DEE-A37E-5C50FC41E543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F504F7A-D19C-4DEE-A37E-5C50FC41E543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F9BB5F0-50F1-487B-9DA2-A842FD139DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F9BB5F0-50F1-487B-9DA2-A842FD139DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F9BB5F0-50F1-487B-9DA2-A842FD139DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F9BB5F0-50F1-487B-9DA2-A842FD139DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54AF6DC9-4E01-46EF-83FF-68B25E5BE78F} = {5FC4635E-03CE-4F55-BCF3-1A69571AF8AE}
+		{7338C05E-5A58-4B48-AF1A-DA875AF8793F} = {E57449F8-ACDC-4CB7-B22B-7EE3422221C6}
+		{3EE046DA-A6CC-4726-8AA4-E0070DE45E89} = {03AF8697-AF91-47C8-8166-616186F1AB82}
+		{29BA0875-6A8D-4500-A944-28F8926092BD} = {03AF8697-AF91-47C8-8166-616186F1AB82}
+		{06C288E6-0998-4799-80E5-867FFA230616} = {E57449F8-ACDC-4CB7-B22B-7EE3422221C6}
+		{E6DA4BA5-19ED-4F30-8351-684C0ACBFD4C} = {03AF8697-AF91-47C8-8166-616186F1AB82}
+		{3F504F7A-D19C-4DEE-A37E-5C50FC41E543} = {5FC4635E-03CE-4F55-BCF3-1A69571AF8AE}
+		{6F9BB5F0-50F1-487B-9DA2-A842FD139DBF} = {A14A3149-2C5D-40BD-B2E1-176EE646F062}
+	EndGlobalSection
+EndGlobal

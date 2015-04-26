@@ -1,0 +1,60 @@
+﻿@model VilaStella.WebAdminClient.Areas.Admin.ViewModels.ReservationsInputModel
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Резервации</h4>
+        </div>
+        <div class="modal-body">
+            @using (Ajax.BeginForm("Add", "Reservations", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST"
+            }, new { area = "Admin" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-control">
+                    @Html.LabelFor(x => x.FirstName, "Име")
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control input-small" })
+                    @Html.ValidationMessageFor(x => x.FirstName, "Невалидно име")
+                </div>
+
+                <div class="form-control">
+                    @Html.LabelFor(x => x.LastName, "Фамилия")
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control input-small" })
+                    @Html.ValidationMessageFor(x => x.LastName, "Невалидна фамилия")
+                </div>
+
+                <div class="form-control">
+                    @Html.LabelFor(x => x.Email, "E-Mail")
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-small" })
+                    @Html.ValidationMessageFor(x => x.Email, "Невалиден email")
+                </div>
+
+                <div class="form-control">
+                    @Html.LabelFor(x => x.Phone, "Телефон")
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
+                    @Html.ValidationMessageFor(x => x.Phone, "Невалиден телефонен номер")
+                </div>
+
+                <div class="form-control">
+                    @Html.LabelFor(x => x.Phone, "Телефон")
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
+                    @Html.ValidationMessageFor(x => x.Phone, "Невалиден телефонен номер")
+                </div>
+
+                <div class="form-control">
+                    @Html.LabelFor(x => x.Phone, "Телефон")
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
+                    @Html.ValidationMessageFor(x => x.Phone, "Невалиден телефонен номер")
+                </div>
+            }
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
+            <button type="button" class="btn btn-primary">Резервирай</button>
+        </div>
+    </div>
+</div>

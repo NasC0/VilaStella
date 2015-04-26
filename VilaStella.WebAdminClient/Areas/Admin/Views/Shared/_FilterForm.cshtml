@@ -1,0 +1,49 @@
+﻿@model VilaStella.Web.Common.Classes.FilterOptions
+
+@using(Html.BeginForm("Filter", "Reservations", FormMethod.Post))
+{
+    <div class="container">
+        @Html.LabelFor(x => x.Filter)
+        @Html.EditorFor(x => x.Filter, "FilterBy")
+
+        <div class="filter-elements" style="display: inline;">
+            <span class="flter-name">
+                @Html.LabelFor(x => x.Name)
+                @Html.EditorFor(x => x.Name)
+            </span>
+
+            <span class="flter-email">
+                @Html.LabelFor(x => x.Email)
+                @Html.EditorFor(x => x.Email)
+            </span>
+
+            <span class="flter-phone">
+                @Html.LabelFor(x => x.Phone)
+                @Html.EditorFor(x => x.Phone)
+            </span>
+
+
+            <span class="flter-from">
+                @Html.LabelFor(x => x.From)
+                @Html.EditorFor(x => x.From)
+            </span>
+
+            <span class="flter-to">
+                @Html.LabelFor(x => x.To)
+                @Html.EditorFor(x => x.To)
+            </span>
+
+            <span class="flter-status">
+                @Html.LabelFor(x => x.Status)
+                @Html.EditorFor(x => x.Status)
+            </span>
+
+            <span class="flter-date">
+                @Html.LabelFor(x => x.Date)
+                @Html.EditorFor(x => x.Date)
+            </span>
+        </div>
+
+        <input type="submit" />
+    </div>
+}

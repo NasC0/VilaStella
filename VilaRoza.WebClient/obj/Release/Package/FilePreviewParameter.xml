@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="kickass-001-site1" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Copy\ Spirital@gmail\.com\\Projects\\Side_Stuff\\VilaRoza\\VilaRoza\.WebClient\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Copy\ Spirital@gmail\.com\\Projects\\Side_Stuff\\VilaRoza\\VilaRoza\.WebClient\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>
