@@ -1,0 +1,61 @@
+﻿@model VilaStella.WebAdminClient.Areas.Admin.ViewModels.ReservationsInputModel
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary()
+
+<div class="control-group">
+    @Html.LabelFor(x => x.FirstName)
+    @Html.EditorFor(x => x.FirstName, new { htmlAttributes = new { @class = "form-control input-small" } })
+    @Html.ValidationMessageFor(x => x.FirstName)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.LastName)
+    @Html.EditorFor(x => x.LastName, new { htmlAttributes = new { @class = "form-control input-small" } })
+    @Html.ValidationMessageFor(x => x.LastName)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.Email)
+    @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @class = "form-control input-small" } })
+    @Html.ValidationMessageFor(x => x.Email)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.Phone)
+    @Html.EditorFor(x => x.Phone, new { htmlAttributes = new { @class = "form-control input-small" } })
+    @Html.ValidationMessageFor(x => x.Phone)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.From)
+    @Html.TextBoxFor(x => x.From, "{0:dd.M.yyyy}",  new { @class = "form-control ff-rounded" })
+
+    @Html.ValidationMessageFor(x => x.From)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.To)
+    @Html.TextBoxFor(x => x.To, "{0:dd.M.yyyy}", new { @class = "form-control ff-rounded" })
+    @Html.ValidationMessageFor(x => x.To)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.PartySize)
+    @Html.EditorFor(x => x.PartySize, new { htmlAttributes = new { @class = "form-control input-small datepicker-from" } })
+    @Html.ValidationMessageFor(x => x.PartySize)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.PaymentMethod)
+    @Html.EditorFor(x => x.PaymentMethod, new { htmlAttributes = new { @class = "form-control input-small datepicker-to" } })
+    @Html.ValidationMessageFor(x => x.PaymentMethod)
+</div>
+
+<div class="control-group">
+    @Html.LabelFor(x => x.Status)
+    @Html.EditorFor(x => x.Status, new { htmlAttributes = new { @class = "form-control input-small datepicker-to" } })
+    @Html.ValidationMessageFor(x => x.Status)
+</div>
+
+<input type="submit" />

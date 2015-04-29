@@ -31,12 +31,12 @@ namespace VilaStella.WebAdminClient.Areas.Admin.ViewModels
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.M.yy}", ApplyFormatInEditMode = true)]
         public DateTime From { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.M.yy}", ApplyFormatInEditMode = true)]
         public DateTime To { get; set; }
 
         [Required]
@@ -44,5 +44,8 @@ namespace VilaStella.WebAdminClient.Areas.Admin.ViewModels
 
         [Required]
         public Status Status { get; set; }
+
+        [Required]
+        public PaymentMethod PaymentMethod { get; set; }
     }
 }

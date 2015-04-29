@@ -12,14 +12,7 @@ namespace VilaStella.Web.Common.Factories
     {
         public ICapparoCalculator GetCalculator(int nightsSpent)
         {
-            if (nightsSpent < 5)
-            {
-                return new FullCapparoCalculator();
-            }
-            else
-            {
-                return new DiscountCapparoCalculator();
-            }
+            return new FullCapparoCalculator();
         }
     }
 }

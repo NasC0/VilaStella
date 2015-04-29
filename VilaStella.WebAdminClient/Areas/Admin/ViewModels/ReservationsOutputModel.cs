@@ -38,6 +38,9 @@ namespace VilaStella.WebAdminClient.Areas.Admin.ViewModels
 
         public Status Status { get; set; }
 
+        [Required]
+        public PaymentMethod PaymentMethod { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Reservation, ReservationsOutputModel>()

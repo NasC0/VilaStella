@@ -22,13 +22,15 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
         private IGenericRepositoy<GeneralSettings> setings;
         private IFilterFactory filterFactory;
         private ICalculatePricing pricingCalculator;
+        private IReservationManager reservationManager;
 
-        public ReservationsController(IDeletableRepository<Reservation> reservations, IGenericRepositoy<GeneralSettings> settings, IFilterFactory filterFactory, ICalculatePricing pricingCalculator)
+        public ReservationsController(IDeletableRepository<Reservation> reservations, IGenericRepositoy<GeneralSettings> settings, IFilterFactory filterFactory, ICalculatePricing pricingCalculator, IReservationManager reservationManager)
         {
             this.reservations = reservations;
             this.setings = settings;
             this.filterFactory = filterFactory;
             this.pricingCalculator = pricingCalculator;
+            this.reservationManager = reservationManager;
         }
 
         // GET: Admin/Basic
@@ -130,43 +132,12 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(ReservationsInputModel input)
         {
-            if (input.To < input.From)
+            var isValidReservation = this.reservationManager.ValidateReservation(ModelState, input);
+
+            if (ModelState.IsValid && isValidReservation)
             {
-                ModelState.AddModelError("Date", "Датата \"До\" трябва да е след датата \"От\"");
-            }
-
-            var offsetStartDate = input.From.AddDays(1);
-            var dates = SetHelpers.BuildDateSet(offsetStartDate, input.To);
-
-            foreach (var dbReservation in this.reservations.All())
-            {
-                var dbDates = SetHelpers.BuildDateSet(dbReservation.From, dbReservation.To);
-                if (dates.Any(x => dbDates.Contains(x)))
-                {
-                    ModelState.AddModelError("Date", "Припокриване на дати за резервация");
-                    break;
-                }
-            }
-
-            if (ModelState.IsValid)
-            {
-
-                var reservation = new Reservation()
-                {
-                    FirstName = input.FirstName,
-                    LastName = input.LastName,
-                    Email = input.Email,
-                    Phone = input.Phone,
-                    From = input.From,
-                    To = input.To,
-                    PartySize = input.PartySize,
-                    Status = Status.Pending,
-                    IsSeen = true
-                };
-
-                var pricing = this.pricingCalculator.GetPricing(reservation);
-                reservation.Capparo = pricing.Capparo;
-                reservation.FullPrice = pricing.FullPrice;
+                bool isSeenInNewTab = true;
+                var reservation = this.reservationManager.CreateReservation(input, isSeenInNewTab);
 
                 this.reservations.Add(reservation);
                 this.reservations.SaveChanges();
@@ -189,14 +160,16 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
                 return View(reservation);
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest); 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ReservationsInputModel reservation)
         {
-            if (ModelState.IsValid)
+            bool isValidReservation = this.reservationManager.ValidateReservation(ModelState, reservation);
+
+            if (ModelState.IsValid && isValidReservation)
             {
                 var dbReservation = this.reservations.Find(reservation.ID);
                 if (dbReservation != null)
@@ -207,6 +180,12 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
                     dbReservation.Phone = reservation.Phone;
                     dbReservation.From = reservation.From;
                     dbReservation.To = reservation.To;
+                    dbReservation.PaymentMethod = reservation.PaymentMethod;
+                    dbReservation.Status = reservation.Status;
+
+                    var updatedPricing = this.reservationManager.GetPricing(dbReservation);
+                    dbReservation.Capparo = updatedPricing.Capparo;
+                    dbReservation.FullPrice = dbReservation.FullPrice;
 
                     this.reservations.Update(dbReservation);
                     this.reservations.SaveChanges();
@@ -219,7 +198,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
                 }
             }
 
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            return View(reservation);
         }
 
         [HttpPost]

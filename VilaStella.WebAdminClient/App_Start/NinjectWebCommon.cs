@@ -83,6 +83,8 @@ namespace VilaStella.WebAdminClient.App_Start
             kernel.Bind<ICapparoFactory>().To<CapparoFactory>();
 
             kernel.Bind<ICalculatePricing>().To<CalculatePricing>();
+
+            kernel.Bind<IReservationManager>().To<ReservationManager>();
         }        
     }
 }

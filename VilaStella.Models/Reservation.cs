@@ -51,7 +51,7 @@ namespace VilaStella.Models
                 var datesList = new List<DateTime>();
 
                 var fromClone = this.From;
-                for (; fromClone < this.To; fromClone = fromClone.AddDays(1))
+                for (; fromClone <= this.To; fromClone = fromClone.AddDays(1))
                 {
                     datesList.Add(fromClone);
                 }
@@ -68,6 +68,9 @@ namespace VilaStella.Models
 
         [Required]
         public int PartySize { get; set; }
+
+        [Required]
+        public PaymentMethod PaymentMethod { get; set; }
 
         public Status Status { get; set; }
 

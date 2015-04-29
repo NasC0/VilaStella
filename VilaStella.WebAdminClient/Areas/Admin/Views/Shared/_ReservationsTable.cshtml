@@ -13,6 +13,7 @@
                 <th>Капаро</th>
                 <th>Цена</th>
                 <th>Брой души</th>
+                <th>Плащане</th>
                 <th>Статус</th>
                 <th>Промени</th>
                 <th>Изтрий</th>
@@ -38,6 +39,7 @@
                     <td>@Html.DisplayFor(x => reservation.Capparo)</td>
                     <td>@Html.DisplayFor(x => reservation.FullPrice)</td>
                     <td>@Html.DisplayFor(x => reservation.PartySize)</td>
+                    <td>@Html.DisplayFor(x => reservation.PaymentMethod)</td>
                     <td>
                         @using (@Ajax.BeginForm("ChangeStatus", "Reservations", new AjaxOptions
                                 {

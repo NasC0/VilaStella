@@ -18,3 +18,6 @@
 /// <reference path="dropzone/dropzone-amd-module.min.js" />
 /// <reference path="bootstrap-image-gallery.min.js" />
 /// <reference path="app/admin/upload.js" />
+/// <reference path="dropzone/dropzone.js" />
+/// <reference path="jquery-bootstrap-modal-steps.min.js" />
+/// <reference path="app/shared/datepicker-module.js" />

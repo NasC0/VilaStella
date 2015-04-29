@@ -4,10 +4,10 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Резервации</h4>
+            <h4 class="js-title-step"></h4>
         </div>
         <div class="modal-body">
-            @using (Ajax.BeginForm("Add", "Reservations", new { area = "Admin" }, new AjaxOptions
+            @using (Ajax.BeginForm("Add", "Home", new AjaxOptions
             {
                 InsertionMode = InsertionMode.Replace,
                 HttpMethod = "POST"
@@ -16,40 +16,105 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
 
-    <div class="control-group">
-        @Html.LabelFor(x => x.FirstName, "Име")
-        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control input-small" })
-    </div>
+                <div class="row hide" data-step="1" data-title="Лична Информация">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.FirstName, "Име", new { @class = "control-label col-xs-2" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control input-small" })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.FirstName)
+                    </div>
 
-    <div class="control-group">
-        @Html.LabelFor(x => x.LastName, "Фамилия")
-        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control input-small" })
-    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.LastName, "Фамилия", new { @class = "control-label col-xs-2" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control input-small" })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.LastName)
+                    </div>
 
-    <div class="control-group">
-        @Html.LabelFor(x => x.Email, "E-Mail")
-        @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-small" })
-    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Email, "E-Mail", new { @class = "control-label col-xs-2" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control input-small" })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.Email)
+                    </div>
 
-    <div class="control-group">
-        @Html.LabelFor(x => x.Phone, "Телефон")
-        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
-    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Phone, "Телефон", new { @class = "control-label col-xs-2" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.Phone)
+                    </div>
 
-    <div class="control-group">
-        @Html.LabelFor(x => x.Phone, "Телефон")
-        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
-    </div>
+                    <div class="modal-footer reservation-footer">
+                        <h6>Моля въведете валиден Email и телефон за връзка</h6>
+                    </div>
+                </div>
 
-    <div class="control-group">
-        @Html.LabelFor(x => x.Phone, "Телефон")
-        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control input-small" })
-    </div>
+                <div class="row hide" data-step="2" data-title="Резервиране">
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.From, "От", new { @class = "control-label col-xs-2" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(x => x.From, "{0:dd.M.yyyy}", new { @class = "form-control ff-rounded" })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.From)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.To, "До", new { @class = "control-label col-xs-2" })
+                        <div class="col-xs-9">
+                            @Html.TextBoxFor(x => x.To, "{0:dd.M.yyyy}", new { @class = "form-control ff-rounded" })
+                        </div>
+                        @Html.ValidationMessageFor(x => x.To)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.PartySize, "Брой хора", new { @class = "control-label col-xs-2" })
+                        <div class="col-xs-9">
+                            <select name="PartySize" id="PartySize" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                        @Html.ValidationMessageFor(x => x.PartySize)
+                    </div>
+                </div>
+
+                <div class="row hide" data-step="3" data-title="Плащане">
+                    <div class="form-group">
+                        <span class="btn payment-button">
+                            В брой
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <span class="btn payment-button">
+                            Банков превод
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <span class="btn payment-button">
+                            Онлайн
+                        </span>
+                    </div>
+
+                    @Html.EditorFor(x => x.PaymentMethod, "StandardEnum")
+
+                    <input type="submit" />
+                </div>
             }
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Затвори</button>
-            <button type="button" class="btn btn-primary">Резервирай</button>
+            <button type="button" class="btn btn-default js-btn-step pull-left" data-orientation="cancel" data-dismiss="modal"></button>
+            <button type="button" class="btn btn-warning js-btn-step" data-orientation="previous"></button>
+            <button type="button" class="btn btn-success js-btn-step" data-orientation="next"></button>
         </div>
     </div>
 </div>
