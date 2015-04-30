@@ -263,6 +263,7 @@
     <Content Include="Scripts\App\Admin\filter-functions.js" />
     <Content Include="Scripts\App\Admin\helpers.js" />
     <Content Include="Scripts\App\Admin\upload.js" />
+    <Content Include="Scripts\App\Root\reservation-module.js" />
     <Content Include="Scripts\App\Shared\datepicker-module.js" />
     <Content Include="Scripts\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -310,6 +311,7 @@
     <Content Include="Scripts\dropzone\dropzone.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-bg.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.animate-enhanced.min.js" />
     <Content Include="Scripts\jquery.blueimp-gallery.min.js" />

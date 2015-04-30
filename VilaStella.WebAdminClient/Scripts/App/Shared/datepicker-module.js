@@ -19,6 +19,8 @@ $.ajax({
     }
 });
 
+$.datepicker.setDefaults($.datepicker.regional["bg"]);
+
 $('#From').datepicker({
     minDate: +1,
     onClose: function (selectedDate) {
@@ -34,6 +36,7 @@ $('#From').datepicker({
         toDates = buildValidToDatesArray(dateText);
         currentSelection = dateText;
         dates.push(dateText);
+        $(this).change();
     },
     beforeShowDay: beforeShowDate,
     prevText: '<i class="icon-arrow-left8"></i>',
@@ -45,6 +48,9 @@ $('#To').datepicker({
     minDate: +1,
     onClose: function (selectedDate) {
         $('#From').datepicker('option', 'maxDate', selectedDate);
+    },
+    onSelect: function() {
+        $(this).change();
     },
     beforeShowDay: beforeShowValidDates,
     prevText: '<i class="icon-arrow-left8"></i>',

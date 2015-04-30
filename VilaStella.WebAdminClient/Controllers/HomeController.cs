@@ -35,14 +35,17 @@ namespace VilaStella.WebAdminClient.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(ReservationsInputModel reservation)
         {
+            ModelState.AddModelError("PaymentMethod", "Нещо се обърка брат");
+
             if (ModelState.IsValid)
             {
                 var bla = reservation;
             }
 
-            return null;
+            return PartialView("_Reservation", reservation);
         }
 
         public ActionResult RenderGallery()

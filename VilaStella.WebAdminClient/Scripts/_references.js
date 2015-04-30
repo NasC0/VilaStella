@@ -21,3 +21,6 @@
 /// <reference path="dropzone/dropzone.js" />
 /// <reference path="jquery-bootstrap-modal-steps.min.js" />
 /// <reference path="app/shared/datepicker-module.js" />
+/// <reference path="jquery-ui.js" />
+/// <reference path="app/root/reservation-module.js" />
+/// <reference path="jquery.ui.datepicker-bg.js" />
