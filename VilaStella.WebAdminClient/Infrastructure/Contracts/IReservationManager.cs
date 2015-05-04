@@ -14,6 +14,6 @@ namespace VilaStella.WebAdminClient.Infrastructure.Contracts
 
         Reservation CreateReservation(ReservationsInputModel inputReservation, bool isSeen);
 
-        Pricing GetPricing(Reservation reservation);
+        Pricing GetPricing(DateTime from, DateTime to);
     }
 }

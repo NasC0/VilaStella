@@ -31,7 +31,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
 
             foreach (var reservation in randomReservations)
             {
-                var pricing = this.pricingCalculator.GetPricing(reservation);
+                var pricing = this.pricingCalculator.GetPricing(reservation.From, reservation.To);
 
                 reservation.Capparo = pricing.Capparo;
                 reservation.FullPrice = pricing.FullPrice;

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using VilaStella.Data.Common.Repositories;
 using VilaStella.Models;
 using VilaStella.Web.Common.Contracts;
@@ -27,14 +28,14 @@ namespace VilaStella.WebAdminClient.Infrastructure
         /// </summary>
         /// <param name="reservation">The DB reservation object</param>
         /// <returns></returns>
-        public Pricing GetPricing(Reservation reservation)
+        public Pricing GetPricing(DateTime from, DateTime to)
         {
             var currentSettings = this.generalSettings.All()
                 .OrderByDescending(x => x.ID)
                 .FirstOrDefault();
 
             decimal pricePerNight = currentSettings.Pricing;
-            int nightsSpent = (reservation.To - reservation.From).Days;
+            int nightsSpent = (to - from).Days;
 
             if (nightsSpent > FULL_PRICE_AT_NIGHTS)
             {

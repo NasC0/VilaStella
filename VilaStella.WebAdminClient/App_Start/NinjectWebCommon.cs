@@ -85,6 +85,8 @@ namespace VilaStella.WebAdminClient.App_Start
             kernel.Bind<ICalculatePricing>().To<CalculatePricing>();
 
             kernel.Bind<IReservationManager>().To<ReservationManager>();
+
+            kernel.Bind<IOverlapDatesManager>().To<OverlapDatesManager>();
         }        
     }
 }

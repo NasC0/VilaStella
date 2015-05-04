@@ -455,3 +455,7 @@ a.ui-state-default {
     -webkit-box-shadow: 0 0 3px red;
     box-shadow: 0 0 3px red;
 }
+
+.modal-hidden {
+    display: none;
+}

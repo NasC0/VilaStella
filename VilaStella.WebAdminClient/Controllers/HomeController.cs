@@ -8,6 +8,8 @@ using VilaStella.Models;
 using AutoMapper.QueryableExtensions;
 using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
 using System.Collections.Generic;
+using VilaStella.WebAdminClient.Infrastructure.Contracts;
+using VilaStella.WebAdminClient.Infrastructure;
 
 namespace VilaStella.WebAdminClient.Controllers
 {
@@ -16,12 +18,16 @@ namespace VilaStella.WebAdminClient.Controllers
         private IDeletableRepository<Image> images;
         private IGenericRepositoy<GeneralSettings> settings;
         private IDeletableRepository<Reservation> reservations;
+        private IReservationManager reservationManager;
+        private IOverlapDatesManager datesManager;
 
-        public HomeController(IDeletableRepository<Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations)
+        public HomeController(IDeletableRepository<Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations, IReservationManager reservationManager, IOverlapDatesManager datesManager)
         {
             this.images = images;
             this.settings = settings;
             this.reservations = reservations;
+            this.reservationManager = reservationManager;
+            this.datesManager = datesManager;
         }
 
         public ActionResult Index()
@@ -38,14 +44,33 @@ namespace VilaStella.WebAdminClient.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(ReservationsInputModel reservation)
         {
-            ModelState.AddModelError("PaymentMethod", "Нещо се обърка брат");
+            bool isValidReservation = this.reservationManager.ValidateReservation(ModelState, reservation);
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && isValidReservation)
             {
-                var bla = reservation;
+                bool isSeenInNewTab = true;
+                var dbResrvation = this.reservationManager.CreateReservation(reservation, isSeenInNewTab);
+
+                this.reservations.Add(dbResrvation);
+                this.reservations.SaveChanges();
+
+                return Json(true);
             }
 
-            return PartialView("_Reservation", reservation);
+            List<string> errors = new List<string>();
+
+            foreach (var error in ModelState.Values)
+            {
+                if (error.Errors.Count > 0)
+                {
+                    for (int i = 0; i < error.Errors.Count; i++)
+                    {
+                        errors.Add(error.Errors[i].ErrorMessage);
+                    }
+                }
+            }
+
+            return Json(errors);
         }
 
         public ActionResult RenderGallery()
@@ -68,55 +93,8 @@ namespace VilaStella.WebAdminClient.Controllers
         [HttpGet]
         public JsonResult GetOverlapDates()
         {
-            var currentDate = DateTime.Now.Date;
-            var overlappingDates = new Dictionary<DateTime, int>();
-
-            var viableReservations = this.reservations.All()
-                                         .Where(x => x.Status == Status.Approved && (x.From >= currentDate || x.To >= currentDate));
-
-            foreach (var reservation in viableReservations)
-            {
-                foreach (var date in reservation.Dates)
-                {
-                    if (date != reservation.To)
-                    {
-                        if (overlappingDates.ContainsKey(date))
-                        {
-                            overlappingDates[date]++;
-                        }
-                        else
-                        {
-                            overlappingDates.Add(date, 1);
-                        }
-                    }
-                }
-            }
-
-            var datesList = new List<string>();
-
-            foreach (var date in overlappingDates)
-            {
-                if (date.Value >= 2)
-                {
-                    string dateString = date.Key.ToString("dd.M.yyyy");
-                    datesList.Add(dateString);
-                    continue;
-                }
-
-                var previousDate = date.Key.AddDays(-1);
-                var nextDate = date.Key.AddDays(1);
-                bool previousDateExcluded = (overlappingDates.ContainsKey(previousDate) && overlappingDates[previousDate] >= 2);
-                bool nextDateExcluded = (overlappingDates.ContainsKey(nextDate) && overlappingDates[nextDate] >= 2);
-
-                if (previousDateExcluded && nextDateExcluded)
-                {
-                    datesList.Add(date.Key.ToString("dd.M.yyyy"));
-                }
-            }
-
-            datesList = datesList.OrderBy(x => DateTime.Parse(x))
-                                 .ToList();
-
+            var overlappingDates = this.datesManager.GetOverlappedDates();
+            var datesList = this.datesManager.AvailableDates(overlappingDates);
             var dates = new { Dates = datesList };
 
             return Json(dates, JsonRequestBehavior.AllowGet);

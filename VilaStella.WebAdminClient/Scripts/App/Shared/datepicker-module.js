@@ -2,22 +2,34 @@
 var toDates = [];
 var isFromDateSelected = false;
 var dateFormat = 'dd.m.yy';
-var currentSelection = '';
+var currentSelection;
 var protocol = window.location.protocol;
 var host = window.location.host;
-var url = protocol + "//" + host + "/Home/GetOverlapDates"
+var url = protocol + "//" + host + "/Home/GetOverlapDates";
+var $from = $('#From');
+var $to = $('#To');
 
-$.ajax({
-    url: url,
-    method: "GET",
-    success: function (data, status) {
-        dates = data.Dates;
-        $('#To, #From').datepicker('refresh');
-    },
-    error: function (response) {
-        console.log(response);
-    }
-});
+function getOverlapDates() {
+    $.ajax({
+        url: url,
+        method: "GET",
+        success: function (data) {
+            dates = data.Dates;
+            $('#To, #From').datepicker('refresh');
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+}
+
+function updateDatepickers() {
+    getOverlapDates();
+    $from.val('');
+    $to.val('');
+}
+
+getOverlapDates();
 
 $.datepicker.setDefaults($.datepicker.regional["bg"]);
 
@@ -26,7 +38,7 @@ $('#From').datepicker({
     onClose: function (selectedDate) {
         $('#To').datepicker('option', 'minDate', selectedDate);
     },
-    onSelect: function (dateText, instance) {
+    onSelect: function (dateText) {
         if (currentSelection !== undefined) {
             var index = dates.indexOf(currentSelection);
             dates.splice(index, 1);
@@ -75,11 +87,10 @@ function beforeShowValidDates(date) {
 function buildValidToDatesArray(startDate) {
     var startDateObject = getDateFromString(startDate);
     var nextStartDateString = jQuery.datepicker.formatDate(dateFormat, startDateObject);
-    var startDateIndex = dates.indexOf(nextStartDateString);
     var validDates = [];
     var nextDisabledDate;
 
-    if (startDateObject > getDateFromString(dates[dates.length - 1]))
+    if (dates.length === 0 || startDateObject > getDateFromString(dates[dates.length - 1]))
     {
     	isFromDateSelected = false;
     	return;
@@ -122,7 +133,7 @@ Date.prototype.addDays = function(days) {
 	var newDate = new Date(this.valueOf());
 	newDate.setDate(newDate.getDate() + days);
 	return newDate;
-}
+};
 
 jQuery(function ($) {
     $.validator.addMethod('date',

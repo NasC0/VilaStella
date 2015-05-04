@@ -221,7 +221,9 @@
     </Compile>
     <Compile Include="Infrastructure\CalculatePricing.cs" />
     <Compile Include="Infrastructure\Contracts\ICalculatePricing.cs" />
+    <Compile Include="Infrastructure\Contracts\IOverlapDatesManager.cs" />
     <Compile Include="Infrastructure\Contracts\IReservationManager.cs" />
+    <Compile Include="Infrastructure\OverlapDatesManager.cs" />
     <Compile Include="Infrastructure\Pricing.cs" />
     <Compile Include="Infrastructure\ReservationManager.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />

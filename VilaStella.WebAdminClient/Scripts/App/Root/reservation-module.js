@@ -30,6 +30,7 @@
     });
 
     $submitFormButton.click(function(ev) {
+        var $self = $(this);
         var isFormValid = $form.valid();
 
         if (!isFormValid) {
@@ -39,12 +40,13 @@
             }
         } else {
             $buttonParent.removeClass(ERROR_CLASS);
+            $self.attr('disabled', 'disabled');
             $form.submit();
         }
     });
 
     $datepickers.change(function() {
         var $self = $(this);
-        var validation = $validator.element($self);
+        $validator.element($self);
     });
 });

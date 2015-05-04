@@ -64,13 +64,13 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
         {
             var newReservations = this.reservations
                 .All()
-                .Where(x => x.IsSeen == false)
+                .Where(x => x.IsSeen == true)
                 .OrderByDescending(x => x.CreatedOn)
                 .ToList();
 
             foreach (var reservation in newReservations)
             {
-                reservation.IsSeen = true;
+                reservation.IsSeen = false;
             }
 
             this.reservations.SaveChanges();
@@ -183,7 +183,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
                     dbReservation.PaymentMethod = reservation.PaymentMethod;
                     dbReservation.Status = reservation.Status;
 
-                    var updatedPricing = this.reservationManager.GetPricing(dbReservation);
+                    var updatedPricing = this.reservationManager.GetPricing(dbReservation.From, dbReservation.To);
                     dbReservation.Capparo = updatedPricing.Capparo;
                     dbReservation.FullPrice = dbReservation.FullPrice;
 

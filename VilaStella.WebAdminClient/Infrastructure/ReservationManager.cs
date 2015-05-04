@@ -19,11 +19,13 @@ namespace VilaStella.WebAdminClient.Infrastructure
 
         private IDeletableRepository<Reservation> reservations;
         private ICalculatePricing pricingCalculator;
+        private IOverlapDatesManager datesManager;
 
-        public ReservationManager(IDeletableRepository<Reservation> reservations, ICalculatePricing pricingCalculator)
+        public ReservationManager(IDeletableRepository<Reservation> reservations, ICalculatePricing pricingCalculator, IOverlapDatesManager datesManager)
         {
             this.reservations = reservations;
             this.pricingCalculator = pricingCalculator;
+            this.datesManager = datesManager;
         }
 
         public bool ValidateReservation(ModelStateDictionary modelState, ReservationsInputModel inputReservation)
@@ -42,31 +44,11 @@ namespace VilaStella.WebAdminClient.Infrastructure
             var offsetStartDate = inputReservation.From.AddDays(1);
             var dates = SetHelpers.BuildDateSet(offsetStartDate, inputReservation.To);
 
-            var allDates = new Dictionary<DateTime, int>();
-            var approvedReservations = this.reservations.All().Where(x => x.Status == Status.Approved);
+            var allDates = this.datesManager.GetOverlappedDates(inputReservation);
 
-            foreach (var dbReservation in approvedReservations)
+            foreach (var date in dates)
             {
-                if (dates.Any(x => dbReservation.ID != inputReservation.ID && dbReservation.Dates.Contains(x)))
-                {
-                    var currentOverlappingDates = dbReservation.Dates.Where(x => dates.Contains(x));
-                    foreach (var overlappingDate in currentOverlappingDates)
-                    {
-                        if (allDates.ContainsKey(overlappingDate))
-                        {
-                            allDates[overlappingDate]++;
-                        }
-                        else
-                        {
-                            allDates.Add(overlappingDate, 1);
-                        }
-                    }
-                }
-            }
-
-            foreach (var date in allDates)
-            {
-                if (date.Value >= ROOMS_COUNT)
+                if (allDates.ContainsKey(date) && allDates[date] >= ROOMS_COUNT)
                 {
                     modelState.AddModelError("Date", OVERLAPPING_RESERVATION_DATES);
                     isValid = false;
@@ -99,16 +81,16 @@ namespace VilaStella.WebAdminClient.Infrastructure
                 IsSeen = isSeen
             };
 
-            var pricing = this.GetPricing(reservation);
+            var pricing = this.GetPricing(reservation.From, reservation.To);
             reservation.Capparo = pricing.Capparo;
             reservation.FullPrice = pricing.FullPrice;
 
             return reservation;
         }
 
-        public Pricing GetPricing(Reservation reservation)
+        public Pricing GetPricing(DateTime from, DateTime to)
         {
-            var pricing = this.pricingCalculator.GetPricing(reservation);
+            var pricing = this.pricingCalculator.GetPricing(from, to);
             return pricing;
         }
     }

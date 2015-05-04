@@ -111,4 +111,63 @@
     <script src="~/Scripts/jquery-bootstrap-modal-steps.min.js" type="text/javascript"></script>
     <script src="~/Scripts/App/Shared/datepicker-module.js" type="text/javascript"></script>
     <script src="~/Scripts/App/Root/reservation-module.js" type="text/javascript"></script>
+    <script>
+        var $modal = $('#myModal'),
+            $mainModalBody = $('.main-modal-body'),
+            $loadingBody = $('.reservation-processing'),
+            $reservationFailure = $('.reservation-failure'),
+            $reservationButton = $('.submit-form'),
+            $reservationSuccess = $('.reservation-success'),
+            $serverErrors = $('.server-errors'),
+            $errorTemplate = $('<span/>');
+
+        $modal.on('shown.bs.modal', function () {
+            $reservationButton.removeAttr('disabled');
+        });
+
+        function onReservationBegin() {
+            $modal.scrollTop(0);
+            $mainModalBody
+                .addClass('modal-hidden')
+                .removeClass('modal-active');
+
+            $loadingBody
+                .addClass('modal-active')
+                .removeClass('modal-hidden');
+        }
+
+        function onReservationSucess(data, status, xhr) {
+            $loadingBody
+            .addClass('modal-hidden')
+            .removeClass('modal-active');
+            if (data === true) {
+                $reservationSuccess
+                    .addClass('modal-active')
+                    .removeClass('modal-hidden');
+            } else {
+                $mainModalBody
+                    .addClass('modal-active')
+                    .removeClass('modal-hidden');
+
+                $reservationButton.removeAttr('disabled');
+                for (var error in data) {
+                    var $currentError = $errorTemplate.clone();
+                    $currentError.text(data[error]);
+                    $serverErrors.append($currentError);
+                }
+
+                updateDatepickers();
+            }
+        }
+
+        function onReservationFailure() {
+            $loadingBody
+                .removeClass('modal-active')
+                .addClass('modal-hidden');
+
+            $reservationFailure
+                .addClass('modal-active')
+                .removeClass('modal-hidden');
+        }
+    </script>
 }
