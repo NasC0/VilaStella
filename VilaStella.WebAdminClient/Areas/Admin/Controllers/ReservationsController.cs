@@ -10,6 +10,7 @@ using VilaStella.Models;
 using VilaStella.Web.Common.Classes;
 using VilaStella.Web.Common.Contracts;
 using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
+using VilaStella.WebAdminClient.Models;
 using VilaStella.WebAdminClient.Infrastructure.Contracts;
 
 namespace VilaStella.WebAdminClient.Areas.Admin.Controllers

@@ -87,6 +87,8 @@ namespace VilaStella.WebAdminClient.App_Start
             kernel.Bind<IReservationManager>().To<ReservationManager>();
 
             kernel.Bind<IOverlapDatesManager>().To<OverlapDatesManager>();
+
+            kernel.Bind<IPayPalManager>().To<PayPalManager>().InSingletonScope();
         }        
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using VilaStella.Data.Common.Repositories;
 using VilaStella.Models;
-using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
+using VilaStella.WebAdminClient.Models;
 using VilaStella.WebAdminClient.Infrastructure.Contracts;
 
 namespace VilaStella.WebAdminClient.Infrastructure

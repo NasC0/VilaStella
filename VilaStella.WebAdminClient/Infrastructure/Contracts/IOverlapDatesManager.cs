@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
+using VilaStella.WebAdminClient.Models;
 
 namespace VilaStella.WebAdminClient.Infrastructure.Contracts
 {

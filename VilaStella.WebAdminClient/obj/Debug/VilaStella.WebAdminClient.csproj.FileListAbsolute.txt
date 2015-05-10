@@ -161,3 +161,4 @@ C:\Projects\VilaStella\VilaStella.WebAdminClient\obj\Debug\VilaStella.WebAdminCl
 C:\Projects\VilaStella\VilaStella.WebAdminClient\bin\EcmaScript.NET.dll
 C:\Projects\VilaStella\VilaStella.WebAdminClient\bin\Jint.dll
 C:\Projects\VilaStella\VilaStella.WebAdminClient\bin\Yahoo.Yui.Compressor.dll
+C:\Projects\VilaStella\VilaStella.WebAdminClient\bin\PayPal.xml

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using VilaStella.Data.Common.Repositories;
 using VilaStella.Models;
 using VilaStella.Web.Common.Classes;
-using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
+using VilaStella.WebAdminClient.Models;
 using VilaStella.WebAdminClient.Infrastructure.Contracts;
 
 namespace VilaStella.WebAdminClient.Infrastructure
@@ -41,8 +41,8 @@ namespace VilaStella.WebAdminClient.Infrastructure
 
             // Check for overlapping reservation days for all available rooms
             // Offset the start date so we can account for checkouts on the same From date
-            var offsetStartDate = inputReservation.From.AddDays(1);
-            var dates = SetHelpers.BuildDateSet(offsetStartDate, inputReservation.To);
+            // var offsetStartDate = inputReservation.From.AddDays(1);
+            var dates = SetHelpers.BuildDateSet(inputReservation.From, inputReservation.To);
 
             var allDates = this.datesManager.GetOverlappedDates(inputReservation);
 
