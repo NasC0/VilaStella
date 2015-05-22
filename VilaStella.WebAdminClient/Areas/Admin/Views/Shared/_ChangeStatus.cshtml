@@ -2,4 +2,4 @@
 
 @Html.AntiForgeryToken()
 @Html.TextBoxFor(x => x.ID, new { @class = "hidden" })
-@Html.EditorFor(x => x.Status)
+@Html.EditorFor(x => x.Status, "Enum")

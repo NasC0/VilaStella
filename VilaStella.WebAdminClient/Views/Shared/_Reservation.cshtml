@@ -1,4 +1,4 @@
-﻿@model VilaStella.WebAdminClient.Areas.Admin.ViewModels.ReservationsInputModel
+﻿@model VilaStella.WebAdminClient.Models.ReservationsInputModel
 
 <div class="modal-dialog">
     <div class="modal-content">
@@ -18,7 +18,7 @@
             }, new { @class = "form-horizontal reservation-form", id = "MainForm" }))
                 {
                     @Html.AntiForgeryToken()
-                    
+
                     <div class="server-errors">
 
                     </div>
@@ -85,24 +85,27 @@
                     <h4 class="modal-title">Плащане</h4>
                     <hr />
 
-                    <div class="form-group text-center">
-                        <label class="btn btn-primary payment-button" for="ByHand" title="Ала бала ница">В брой</label>
+                    <div class="form-group text-center payment-parent">
+                        <label class="btn btn-primary payment-button" for="ByHand">В брой</label>
                         <input type="radio" name="payment" id="ByHand" required />
+                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></a>
                     </div>
-                    <div class="form-group text-center">
+                    <div class="form-group text-center payment-parent">
                         <label class="btn btn-primary payment-button" for="BankTransaction">Банков превод</label>
                         <input type="radio" name="payment" id="BankTransaction" />
+                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></a>
                     </div>
-                    <div class="form-group text-center">
-                        <label class="btn btn-primary payment-button" for="PayPal">Онлайн</label>
+                    <div class="form-group text-center payment-parent">
+                        <label class="btn btn-primary payment-button" for="PayPal" style="font-family: tahoma;">PayPal</label>
                         <input type="radio" name="payment" id="PayPal" />
+                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Lorem Ipsum е елементарен примерен текст, използван в печатарската и типографската индустрия. Lorem Ipsum е индустриален стандарт от около 1500 година, когато неизвестен печатар взема няколко печатарски букви и ги разбърква, за да "></a>
                     </div>
 
                     @Html.EditorFor(x => x.PaymentMethod, "StandardEnum")
                 }
             </div>
             <div class="modal-hidden reservation-processing">
-                <h4>Моля изчакайте, вашата резервация се обработва</h4>
+                <h4>Моля изчакайте, вашата резервация се обработва.</h4>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="100" aria-valuemax="100" style="width: 100%">
                     </div>
@@ -114,8 +117,8 @@
             </div>
 
             <div class="modal-hidden reservation-success">
-                <h4>Вашата резервация беше регистрирана успешно</h4>
-                <h5>Ще получите e-mail на адреса, който сте посочили, с инструкции за плащане</h5>
+                <h4>Вашата резервация беше регистрирана успешно.</h4>
+                <h5>Ще получите e-mail на адреса, който сте посочили, с информация за резервацията Ви и инструкции за плащане.</h5>
             </div>
         </div>
         <div class="modal-footer text-center">
