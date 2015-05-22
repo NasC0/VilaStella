@@ -256,6 +256,7 @@
     <Content Include="Content\form-framework.min.css" />
     <Content Include="Content\grid.css" />
     <Content Include="Content\icomoon.css" />
+    <Content Include="Content\img\LibSociety.jpg" />
     <Content Include="Content\img\spinner.gif" />
     <Content Include="Content\jqueryui-theme.min.css" />
     <Content Include="Content\map-marker.png" />
@@ -306,6 +307,7 @@
     <Content Include="Views\Shared\_GalleryImage.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ReservationForm.cshtml" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
+    <None Include="Properties\PublishProfiles\vilastella.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\App\Root\grayscale.js" />
     <Content Include="Scripts\dropzone\basic.css" />

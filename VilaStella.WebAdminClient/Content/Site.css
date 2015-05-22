@@ -138,6 +138,11 @@ a {
             border-bottom: 1px solid rgba(255,255,255,.3);
             background: #00BFFF;
         }
+
+    li.right-header {
+        position: absolute;
+        right: 5%;
+    }
 }
 
 .intro {
@@ -442,7 +447,7 @@ a.ui-state-default {
 }
 
 .payment-button {
-   width: 30%;
+   min-width: 42%;
 }
 
 .payment-button + input {
@@ -458,4 +463,16 @@ a.ui-state-default {
 
 .modal-hidden {
     display: none;
+}
+
+.payment-parent {
+    position: relative;
+}
+
+.activate-popover {
+    position: absolute;
+    top: 25%;
+    margin-left: 5px;
+    color: #129cc8;
+    font-size: 15px;
 }
