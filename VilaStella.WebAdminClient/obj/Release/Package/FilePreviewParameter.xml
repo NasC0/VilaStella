@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="Default Web Site/VilaStella" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Copy\\Projects\\Side_Stuff\\VilaRoza\\VilaStella\.WebAdminClient\\obj\\Release\\Package\\PackageTmp$" />
-    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Copy\\Projects\\Side_Stuff\\VilaRoza\\VilaStella\.WebAdminClient\\obj\\Release\\Package\\PackageTmp$" />
+  <parameter name="IIS Web Application Name" description="" value="vilastella.com" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Projects\\VilaStella\\VilaStella\.WebAdminClient\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Projects\\VilaStella\\VilaStella\.WebAdminClient\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
   <parameter name="VilaStella-Web.config Connection String" description="" value="Data Source=.;Initial Catalog=VilaStella;Integrated Security=True" tags="">
-    <parameterEntry kind="XmlFile" scope="D:\\Copy\\Projects\\Side_Stuff\\VilaRoza\\VilaStella\.WebAdminClient\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='VilaStella']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Projects\\VilaStella\\VilaStella\.WebAdminClient\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='VilaStella']/@connectionString" />
   </parameter>
 </parameters>

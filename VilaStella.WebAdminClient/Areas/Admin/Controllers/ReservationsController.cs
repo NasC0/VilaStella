@@ -262,7 +262,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
         private PaginationInfo Paginate(int? page, int entriesCount)
         {
             PaginationInfo paginate = new PaginationInfo();
-            if (page == null)
+            if (page == null || entriesCount <= PAGE_SIZE)
             {
                 paginate.Page = 1;
                 return paginate;

@@ -24,3 +24,6 @@
 /// <reference path="jquery-ui.js" />
 /// <reference path="app/root/reservation-module.js" />
 /// <reference path="jquery.ui.datepicker-bg.js" />
+/// <reference path="jquery.backstretch.min.js" />
+/// <reference path="jquery.easing.min.js" />
+/// <reference path="jquery.superslides.js" />

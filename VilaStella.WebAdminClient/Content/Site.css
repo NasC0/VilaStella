@@ -139,9 +139,13 @@ a {
             background: #00BFFF;
         }
 
+    div.navbar-collapse.collapse {
+        margin-right: 30px;
+    }
+
     li.right-header {
         position: absolute;
-        right: 5%;
+        right: 10px;
     }
 }
 
@@ -475,4 +479,9 @@ a.ui-state-default {
     margin-left: 5px;
     color: #129cc8;
     font-size: 15px;
+}
+
+i.social-media {
+    line-height: 20px;
+    font-size: 25px;
 }
