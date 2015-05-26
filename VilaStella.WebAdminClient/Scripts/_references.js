@@ -27,3 +27,5 @@
 /// <reference path="jquery.backstretch.min.js" />
 /// <reference path="jquery.easing.min.js" />
 /// <reference path="jquery.superslides.js" />
+/// <reference path="knockout-3.3.0.js" />
+/// <reference path="app/root/pricing-module.js" />

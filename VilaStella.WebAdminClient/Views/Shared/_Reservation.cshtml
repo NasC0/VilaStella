@@ -79,7 +79,11 @@
                         </div>
                     </div>
 
-                    <div class="reservation-footer"><h6>Моля въведете валиден Email и телефон за връзка</h6></div>
+                    <div class="reservation-footer">
+                        <h5>Капаро: <span data-bind="text: Capparo"></span> лв.</h5>
+                        <h5>Пълна цена: <span data-bind="text: FullPrice"></span> лв.</h5>
+                        <h6>Моля въведете валиден Email и телефон за връзка</h6>
+                    </div>
 
                     <hr />
                     <h4 class="modal-title">Плащане</h4>
@@ -88,17 +92,12 @@
                     <div class="form-group text-center payment-parent">
                         <label class="btn btn-primary payment-button" for="ByHand">В брой</label>
                         <input type="radio" name="payment" id="ByHand" required />
-                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></a>
+                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Предаване на капарото или пълната сума на ръка. Плащането трябва да се извърши до 48 часа след заявката за резервация."></a>
                     </div>
                     <div class="form-group text-center payment-parent">
                         <label class="btn btn-primary payment-button" for="BankTransaction">Банков превод</label>
                         <input type="radio" name="payment" id="BankTransaction" />
-                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></a>
-                    </div>
-                    <div class="form-group text-center payment-parent">
-                        <label class="btn btn-primary payment-button" for="PayPal" style="font-family: tahoma;">PayPal</label>
-                        <input type="radio" name="payment" id="PayPal" />
-                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Lorem Ipsum е елементарен примерен текст, използван в печатарската и типографската индустрия. Lorem Ipsum е индустриален стандарт от около 1500 година, когато неизвестен печатар взема няколко печатарски букви и ги разбърква, за да "></a>
+                        <a class="glyphicon glyphicon-info-sign activate-popover" href="javascript:void(0);" data-trigger="focus" data-container="body" data-toggle="popover" data-placement="top" data-content="Предаване на капарото по банков път - чрез превод от клон на банка или онлайн банкиране. Плащането трябва да се извърши до 48 часа след заявката за резервация."></a>
                     </div>
 
                     @Html.EditorFor(x => x.PaymentMethod, "StandardEnum")

@@ -1,17 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Configuration;
 using System.Web.Mvc;
-using VilaStella.Data;
+using AutoMapper.QueryableExtensions;
 using VilaStella.Data.Common.Repositories;
 using VilaStella.Models;
-using AutoMapper.QueryableExtensions;
 using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
-using VilaStella.WebAdminClient.Models;
-using System.Collections.Generic;
 using VilaStella.WebAdminClient.Infrastructure.Contracts;
-using VilaStella.WebAdminClient.Infrastructure;
-using PayPal.Api;
+using VilaStella.WebAdminClient.Models;
 
 namespace VilaStella.WebAdminClient.Controllers
 {
@@ -22,16 +18,16 @@ namespace VilaStella.WebAdminClient.Controllers
         private IDeletableRepository<Reservation> reservations;
         private IReservationManager reservationManager;
         private IOverlapDatesManager datesManager;
-        private IPayPalManager paypalManager;
+        private IEmailManager emailManager;
 
-        public HomeController(IDeletableRepository<VilaStella.Models.Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations, IReservationManager reservationManager, IOverlapDatesManager datesManager, IPayPalManager paypalManager)
+        public HomeController(IDeletableRepository<VilaStella.Models.Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations, IReservationManager reservationManager, IOverlapDatesManager datesManager, IEmailManager emailManager)
         {
             this.images = images;
             this.settings = settings;
             this.reservations = reservations;
             this.reservationManager = reservationManager;
             this.datesManager = datesManager;
-            this.paypalManager = paypalManager;
+            this.emailManager = emailManager;
         }
 
         public ActionResult Index()
@@ -56,18 +52,8 @@ namespace VilaStella.WebAdminClient.Controllers
                 var dbResrvation = this.reservationManager.CreateReservation(reservation, isSeenInNewTab);
 
                 this.reservations.Add(dbResrvation);
+                this.emailManager.SendConfirmationEmail(dbResrvation);
                 this.reservations.SaveChanges();
-
-                try
-                {
-                    var invoice = this.paypalManager.MakeInvoice(dbResrvation);
-                    this.paypalManager.SendInvoice(invoice);   
-                }
-                catch
-                {
-                    this.reservations.Delete(dbResrvation);
-                    this.reservations.SaveChanges();
-                }
 
                 return Json(true);
             }
@@ -105,6 +91,35 @@ namespace VilaStella.WebAdminClient.Controllers
             return PartialView("_Reservation");
         }
 
+        public ActionResult CancelReservation(string id)
+        {
+            Guid guidID;
+
+            if (!Guid.TryParse(id, out guidID))
+            {
+                return HttpNotFound("Invalid reservation");
+            }
+
+            var statusChangeReservations = new StatusChangeInputModel()
+            {
+                ID = guidID,
+                Status = Status.Cancelled
+            };
+
+            try
+            {
+                var reservation = this.reservationManager.ChangeStatus(statusChangeReservations);
+                this.reservations.Update(reservation);
+                this.reservations.SaveChanges();
+
+                return View();
+            }
+            catch (ArgumentNullException)
+            {
+                return HttpNotFound("Reservation not found");
+            }
+        }
+
         [HttpGet]
         public JsonResult GetOverlapDates()
         {
@@ -113,6 +128,13 @@ namespace VilaStella.WebAdminClient.Controllers
             var dates = new { Dates = datesList };
 
             return Json(dates, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetPricing(DateTime from, DateTime to)
+        {
+            var pricing = this.reservationManager.GetPricing(from, to);
+            return Json(pricing);
         }
     }
 }

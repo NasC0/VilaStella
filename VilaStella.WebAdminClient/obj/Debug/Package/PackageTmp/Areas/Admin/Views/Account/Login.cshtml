@@ -1,0 +1,76 @@
+﻿@model VilaStella.WebAdminClient.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" style="position: absolute; left: 95%;" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myModalLabel">Вход</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary()
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Email, new { @class = "col-md-4 control-label" })
+
+                        <div class="col-md-5">
+                            @Html.EditorFor(x => x.Email, new { @class = "form-control input-md" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Password, new { @class = "col-md-4 control-label" })
+
+                        <div class="col-md-5">
+                            @Html.EditorFor(x => x.Password, new { @class = "form-control input-md" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.RememberMe, new { @class = "col-md-4 control-label" })
+
+
+                        <div class="col-md-4">
+                            <label class="checkbox-inline" for="checkboxes-0">
+                                @Html.EditorFor(x => x.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="row text-center">
+                        <button class="btn btn-primary submit-login" data-loading-text="Влизане">Влез</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $('#loginModal').modal('show');
+
+            $('#loginModal').on('hide.bs.modal', function (e) {
+                $('#loginForm').submit();
+                preventDefault();
+            });
+
+            $('.submit-login').on('click', function () {
+                $('#loginForm').validate({
+                    submitHandler: function (form) {
+                        $('.submit-login').button('loading');
+                    }
+                });
+            })
+        });
+    </script>
+}

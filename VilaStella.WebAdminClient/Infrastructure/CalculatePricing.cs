@@ -10,8 +10,6 @@ namespace VilaStella.WebAdminClient.Infrastructure
 {
     public class CalculatePricing : ICalculatePricing
     {
-        private const int FULL_PRICE_AT_NIGHTS = 5;
-
         private ICapparoFactory capparoFactory;
         private IGenericRepositoy<GeneralSettings> generalSettings;
 
@@ -36,11 +34,6 @@ namespace VilaStella.WebAdminClient.Infrastructure
 
             decimal pricePerNight = currentSettings.Pricing;
             int nightsSpent = (to - from).Days;
-
-            if (nightsSpent > FULL_PRICE_AT_NIGHTS)
-            {
-                nightsSpent--;
-            }
 
             decimal fullPrice = pricePerNight * nightsSpent;
             decimal capparo = this.capparoFactory.GetCalculator(nightsSpent).CalculateCapparo(pricePerNight, nightsSpent);

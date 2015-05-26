@@ -8,6 +8,7 @@ using VilaStella.Models;
 using VilaStella.Web.Common.Classes;
 using VilaStella.WebAdminClient.Models;
 using VilaStella.WebAdminClient.Infrastructure.Contracts;
+using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
 
 namespace VilaStella.WebAdminClient.Infrastructure
 {
@@ -67,12 +68,17 @@ namespace VilaStella.WebAdminClient.Infrastructure
         /// <returns>The derived database reservation model.</returns>
         public Reservation CreateReservation(ReservationsInputModel inputReservation, bool isSeen)
         {
+            string firstName = inputReservation.FirstName.Trim();
+            string lastName = inputReservation.LastName.Trim();
+            string emailTrimmed = inputReservation.Email.Trim();
+            string phoneTrimmed = inputReservation.Phone.Trim();
+
             var reservation = new Reservation()
             {
-                FirstName = inputReservation.FirstName,
-                LastName = inputReservation.LastName,
-                Email = inputReservation.Email,
-                Phone = inputReservation.Phone,
+                FirstName = firstName,
+                LastName = lastName,
+                Email = emailTrimmed,
+                Phone = phoneTrimmed,
                 From = inputReservation.From,
                 To = inputReservation.To,
                 PartySize = inputReservation.PartySize,
@@ -92,6 +98,19 @@ namespace VilaStella.WebAdminClient.Infrastructure
         {
             var pricing = this.pricingCalculator.GetPricing(from, to);
             return pricing;
+        }
+
+        public Reservation ChangeStatus(StatusChangeInputModel reservation)
+        {
+            var dbReservation = this.reservations.Find(reservation.ID);
+
+            if (dbReservation != null)
+            {
+                dbReservation.Status = reservation.Status;
+                return dbReservation;
+            }
+
+            throw new ArgumentNullException("reservation", "Non existing reservation");
         }
     }
 }

@@ -9,7 +9,7 @@ namespace VilaStella.Data.Migrations
     internal sealed class Configuration : DbMigrationsConfiguration<DefaultDbContext>
     {
         private const string ADMIN = "Admin";
-        private const string ADMIN_PASSWORD = "314159aass";
+        private const string ADMIN_PASSWORD = "Liubo3tap";
         private const string ADMIN_ROLE = "Admin";
         private const string TEST = "TestTest";
 

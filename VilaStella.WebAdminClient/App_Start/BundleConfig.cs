@@ -30,7 +30,8 @@ namespace VilaStella.WebAdminClient
             bundles.Add(new ScriptBundle("~/bundles/home").Include(
                 "~/Scripts/jquery.easing.min.js",
                 "~/Scripts/jquery.backstretch.min.js",
-                "~/Scripts/App/Root/grayscale.js"));
+                "~/Scripts/App/Root/grayscale.js",
+                "~/Scripts/knockout-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                 "~/Scripts/jquery.easing.min.js",

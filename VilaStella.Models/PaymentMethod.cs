@@ -9,7 +9,6 @@ namespace VilaStella.Models
     public enum PaymentMethod
     {
         ByHand,
-        BankTransaction,
-        PayPal
+        BankTransaction
     }
 }

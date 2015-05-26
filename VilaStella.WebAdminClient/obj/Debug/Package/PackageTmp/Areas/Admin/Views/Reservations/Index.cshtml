@@ -1,0 +1,40 @@
+﻿@using VilaStella.Web.Common.Classes
+
+@model IEnumerable<VilaStella.WebAdminClient.Models.ReservationsOutputModel>
+
+@{
+    ViewBag.Title = "Вила Стела";
+}
+
+<div class="main-container">
+    @{
+        Html.RenderAction("FilterForm");
+    }
+
+    @if (Model.Count() == 0)
+    {
+        <h2>Не съществуват резервации</h2>
+    }
+    else
+    {
+        @Html.Partial("_ReservationsTable", Model)
+    }
+
+    <div class="container text-center">
+        @{
+            var previousPage = ViewBag.CurrentPage - 1;
+            var nextPage = ViewBag.CurrentPage + 1;
+        }
+        <div>
+            <a href="@Url.Action("Index", "Reservations", new { page = previousPage })" class="fa fa-chevron-left fa-2x"></a>
+            <p style="display: inline-block; font-size: 35px;">@ViewBag.CurrentPage</p>
+            <a href="@Url.Action("Index", "Reservations", new { page = nextPage })" class="fa fa-chevron-right fa-2x"></a>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/App/Admin/helpers.js"></script>
+    <script src="~/Scripts/App/Admin/filter-functions.js"></script>
+}

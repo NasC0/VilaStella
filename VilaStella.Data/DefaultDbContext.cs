@@ -27,6 +27,8 @@ namespace VilaStella.Data
 
         public virtual IDbSet<GeneralSettings> GeneralSettings { get; set; }
 
+        public virtual IDbSet<Email> EmailTemplates { get; set; }
+
         public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();

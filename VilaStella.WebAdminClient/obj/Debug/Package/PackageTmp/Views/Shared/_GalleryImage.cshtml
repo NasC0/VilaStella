@@ -1,0 +1,23 @@
+﻿@model VilaStella.WebAdminClient.Areas.Admin.ViewModels.ImageOutputModel
+
+<div class="col-md-4 col-sm-4 col-xs-4 image-wrapper" id="@Model.ID">
+
+    @{
+        var guidID = Guid.NewGuid();
+    }
+
+    @if (Request.IsAuthenticated)
+    {
+        <input type="checkbox" id="@guidID" class="show-checkbox" checked="@Model.IsShown" />
+        <label for="@guidID" class="show-checkbox-label"></label>
+        <a href="#" class="fa fa-times fa-2x delete-image"></a>
+    }
+    <a href='@Url.Action("GetImage", "Image", new { area = "Admin", id = Model.ID })' title="@Model.Caption" data-gallery>
+        <img src='@Url.Action("GetImage", "Image", new { area = "Admin", id = Model.ID })' class="img-responsive thumb" />
+    </a>
+
+    @if (Request.IsAuthenticated)
+    {
+        @Html.TextBoxFor(x => Model.Caption, new { @class = "form-control image-caption" })
+    }
+</div>

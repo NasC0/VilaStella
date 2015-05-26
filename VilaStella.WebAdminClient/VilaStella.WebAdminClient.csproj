@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VilaStella.WebAdminClient</RootNamespace>
     <AssemblyName>VilaStella.WebAdminClient</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,18 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="VilaStella-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=.%3bInitial Catalog=VilaStella%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\VilaStella-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,18 +98,20 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -136,6 +151,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -212,6 +228,10 @@
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReservationsController.cs" />
     <Compile Include="Areas\Admin\ViewModels\ImageOutputModel.cs" />
+    <Compile Include="Infrastructure\AllowCrossSiteOrigin.cs" />
+    <Compile Include="Infrastructure\Contracts\IEmailManager.cs" />
+    <Compile Include="Infrastructure\EmailInfo.cs" />
+    <Compile Include="Infrastructure\EmailManager.cs" />
     <Compile Include="Infrastructure\PayPalManager.cs" />
     <Compile Include="ViewModels\ReservationsInputModel.cs" />
     <Compile Include="ViewModels\ReservationsOutputModel.cs" />
@@ -271,6 +291,7 @@
     <Content Include="Scripts\App\Admin\filter-functions.js" />
     <Content Include="Scripts\App\Admin\helpers.js" />
     <Content Include="Scripts\App\Admin\upload.js" />
+    <Content Include="Scripts\App\Root\pricing-module.js" />
     <Content Include="Scripts\App\Root\reservation-module.js" />
     <Content Include="Scripts\App\Shared\datepicker-module.js" />
     <Content Include="Scripts\bootstrap-image-gallery.min.js" />
@@ -307,9 +328,13 @@
     <Content Include="Scripts\jquery.backstretch.min.js" />
     <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.superslides.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="Views\Shared\_GalleryImage.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ReservationForm.cshtml" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
+    <None Include="Properties\PublishProfiles\VilaStella FTP deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\vilastella.com - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\vilastella.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\App\Root\grayscale.js" />
@@ -363,6 +388,8 @@
     <Content Include="Views\Shared\EditorTemplates\FilterBy.cshtml" />
     <Content Include="Views\Shared\_Gallery.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\StandardEnum.cshtml" />
+    <Content Include="Views\Home\CancelReservation.cshtml" />
+    <Content Include="Views\Shared\_CancelView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -248,15 +248,18 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
 
         public ActionResult ChangeStatus(StatusChangeInputModel reservation)
         {
-            var dbReservation = this.reservations.Find(reservation.ID);
-            if (dbReservation != null)
+            try
             {
-                dbReservation.Status = reservation.Status;
+                var dbReservation = this.reservationManager.ChangeStatus(reservation);
+                this.reservations.Update(dbReservation);
                 this.reservations.SaveChanges();
+
                 return PartialView("_ChangeStatus", reservation);
             }
-
-            return RedirectToAction("Index", "Reservations");
+            catch (ArgumentNullException)
+            {
+                return RedirectToAction("Index", "Reservations");
+            }
         }
 
         private PaginationInfo Paginate(int? page, int entriesCount)

@@ -1,0 +1,241 @@
+﻿@model bool
+
+@{
+    ViewBag.Title = "Вила Стела";
+}
+
+<header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading">Добре дошли във Вила Стела!</h1>
+                    <a href="#about" class="btn btn-circle page-scroll">
+                        <i class="fa fa-angle-double-down animated"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="container content-section text-center">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>За нас</h2>
+            <p>Разположена във вилно селище Зора на курортен комплекс Слънчев бряг,Вила Стела се намира само на 200 метра от бреговата ивица. Лечебният микроклимат, златистият пясък и кристалните води на Черно море ще потопят тялото и душата ви сред вълшебството на природата. Това го прави идеалното място за вашата лятна почивка.</p>
+            <p>Вилата  предлага напълно обзаведени апартаменти, като всеки от тях разполага с климатици,кухненски бокс с електрическа кана,хладилник,готварска печка и кухненска посуда,кабелна телевизия.На територията на цялата вила има безплатен Wi-fi. Вилата има и обща пералня,която може да използвате при заплащане.Към всеки апартамент има и тераса, от която се открива  гледка към морския бряг. Къщата разполага с прекрасно поддържана градина с барбекю, където вие може да се насладите на вкусна храна и приятни разговори, докато вашите деца се отдадат на множество игри.</p>
+            <p>Всичко това превръща Вила Стела в един оазис сред натоварения и шумен курорт.</p>
+            <p>Вилата е синоним на красота, лукс  и комфорт. Ние ви гарантираме една спокойна и пълноценна почивка, с много незабравими и весели моменти.</p>
+            <p>Ще ви посрещнем с внимание дори и към най-малките детайли, тъй като за нас всеки гост е важен!  Почивката ви тук ще надмине вашите очаквания. Единственото, което допълнително може да пожелаете при нас, е да имате повече време.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Location Section -->
+<section id="location" class="container content-section text-center">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Локация</h2>
+            <p>Разположен е на брега на Черно море, на 35 км северно от град Бургас. Намира се в непосредствена близост до град Несебър, който е включен в списъка на UNESCO.  Най-голямото пристанище на българското черноморие се намира в разположения наблизо курорт Свети Влас.</p>
+            <p>Средната температура през деня обикновено е 27°C.</p>
+            <p>Плажната ивица е около 10 км дълга и около 60 м широка. Плажът е с нежен златист пясък, натурални дюни, чиста и кристална вода. Слънчев бряг е награден с международния приз Blue Flag за доказано чистата околна среда.</p>
+            <p>Нощният живот в Слънчев бряг е известен в цял свят. Комплексът разполага с над 200 ресторанта, барове, дискотеки, кафенета, караоке клубове, пъбове, казина.Добре известни са Cacao beach и Bedroom beach, където всяка година партитата на световноизвестни диджеи привличат хиляди туристи.</p>
+            <p>Почитателите на спорта биха могли да вдигнат адреналина си с сърфинг, скутери, водни ски, парашутизъм, делтапланеризъм, кайтинг, плаване с яхти.</p>
+
+            <!-- Map Section -->
+            <div id="map"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="container content-section text-center">
+    <h2>Галерия</h2>
+
+    @{
+        Html.RenderAction("RenderGallery");
+    }
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container content-section text-center">
+    <div class="row">
+        <div class="col-lg-12">
+            <section>
+                <h2>Вила Стела</h2>
+                <p>ул. Венера 2, 8000 Слънчев бряг, България</p>
+            </section>
+
+            <section>
+                <h4>Стела Сивева</h4>
+                <p>
+                    <a href="mailto:stelchityyy@abv.bg">stelchityyy@abv.bg</a> <br />
+                    <span>0884714558</span>
+                </p>
+            </section>
+
+            <section>
+                <h4>Славчо Сивев</h4>
+                <p>
+                    <a href="mailto:slavi_sivev@abv.bg">slavi_sivev@abv.bg</a> <br />
+                    <span>0889373056</span> <br />
+                    <span>056/818311</span>
+                </p>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!-- Reservation Section -->
+<section id="reservations" class="container content-section text-center">
+    <!-- Button trigger modal -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Информация за настаняване</h2>
+            <section>
+                <h4>Настаняване</h4>
+                <p>14:00 до 20:00 часа</p>
+
+                <h4>Напускане</h4>
+                <p>До 12:00 часа</p>
+            </section>
+
+            <section>
+                <h4>Резервиране</h4>
+                <p>Цената за нощувка варира от 60 до 80 лв в зависимост от сезона. При резервиране на почивка за над 15 дена правим отстъпка от цялата сума за престоя ви.</p>
+                <p>За гарантиране на резервацията се изисква заплащане -30% от стойността на цялата сума за вашата почивка.При анулиране на резервацията тази сума не се връща.</p>
+            </section>
+
+            <section>
+                <h4>Настаняване на деца и допълнителни легла</h4>
+                <p>
+                    Всички деца са добре дошли. <br />
+                    Има налични допълнителни легла. <br />
+                    Нямаме в наличност детски кошари. <br />
+                </p>
+            </section>
+
+            <section>
+                <h4>Домашни любимци</h4>
+                <p>Домашни любимци са разрешени с предварителна заявка. Може да се изисква такса.</p>
+            </section>
+
+            <section>
+                <h4>Плащане на капарото</h4>
+                <p>
+                    До 48 часа след като се направи резервацията.
+                    Може да платите по два начина:
+                    <ul class="list-group">
+                        <li class="list-group-item">На ръка в брой</li>
+                        <li class="list-group-item">На следната банкова сметка: BG57UBBS78231011905116</li>
+                    </ul>
+                </p>
+            </section>
+
+            @if (Model == true)
+            {
+                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+                    Резервирай
+                </button>
+    <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    @{
+                Html.RenderAction("RenderReservation");
+                    }
+                </div>
+            }
+            else
+            {
+                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" disabled>
+                    Резервирай
+                </button>
+                <p class="text-center">Резервациите са затворени в момента!</p>
+            }
+        </div>
+    </div>
+</section>
+@section styles
+{
+    <link href="~/Content/blueimp-gallery.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-image-gallery.min.css" rel="stylesheet" />
+    <link href="~/Content/grid.css" rel="stylesheet" />
+    <link href="~/Content/icomoon.css" rel="stylesheet" />
+    <link href="~/Content/form-framework.min.css" rel="stylesheet" />
+    <link href="~/Content/jqueryui-theme.min.css" rel="stylesheet" />
+}
+
+
+@section scripts
+{
+    <script src="~/Scripts/dropzone/dropzone.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.blueimp-gallery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-image-gallery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.ui.datepicker-bg.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-bootstrap-modal-steps.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/App/Shared/datepicker-module.js" type="text/javascript"></script>
+    <script src="~/Scripts/App/Root/reservation-module.js" type="text/javascript"></script>
+    <script src="~/Scripts/App/Root/pricing-module.js" type="text/javascript"></script>
+    <script>
+        var $modal = $('#myModal'),
+            $mainModalBody = $('.main-modal-body'),
+            $loadingBody = $('.reservation-processing'),
+            $reservationFailure = $('.reservation-failure'),
+            $reservationButton = $('.submit-form'),
+            $reservationSuccess = $('.reservation-success'),
+            $serverErrors = $('.server-errors'),
+            $errorTemplate = $('<span/>');
+
+        $modal.on('shown.bs.modal', function () {
+            $reservationButton.removeAttr('disabled');
+        });
+
+        $('.activate-popover').popover();
+
+        function onReservationBegin() {
+            $modal.scrollTop(0);
+            $mainModalBody
+                .addClass('modal-hidden')
+                .removeClass('modal-active');
+
+            $loadingBody
+                .addClass('modal-active')
+                .removeClass('modal-hidden');
+        }
+
+        function onReservationSucess(data, status, xhr) {
+            $loadingBody
+            .addClass('modal-hidden')
+            .removeClass('modal-active');
+            if (data === true) {
+                $reservationSuccess
+                    .addClass('modal-active')
+                    .removeClass('modal-hidden');
+            } else {
+                $mainModalBody
+                    .addClass('modal-active')
+                    .removeClass('modal-hidden');
+
+                $reservationButton.removeAttr('disabled');
+                for (var error in data) {
+                    var $currentError = $errorTemplate.clone();
+                    $currentError.text(data[error]);
+                    $serverErrors.append($currentError);
+                }
+
+                updateDatepickers();
+            }
+        }
+
+        function onReservationFailure() {
+            $loadingBody
+                .removeClass('modal-active')
+                .addClass('modal-hidden');
+
+            $reservationFailure
+                .addClass('modal-active')
+                .removeClass('modal-hidden');
+        }
+    </script>
+}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VilaStella.Models;
+using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
 using VilaStella.WebAdminClient.Models;
 
 namespace VilaStella.WebAdminClient.Infrastructure.Contracts
@@ -15,5 +16,7 @@ namespace VilaStella.WebAdminClient.Infrastructure.Contracts
         Reservation CreateReservation(ReservationsInputModel inputReservation, bool isSeen);
 
         Pricing GetPricing(DateTime from, DateTime to);
+
+        Reservation ChangeStatus(StatusChangeInputModel reservation);
     }
 }

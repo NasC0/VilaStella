@@ -1,0 +1,159 @@
+﻿@model IList<VilaStella.WebAdminClient.Areas.Admin.ViewModels.ImageOutputModel>
+
+@{
+    ViewBag.Title = "Вила Стела";
+}
+
+<div class="main-container container text-center">
+    <div class="upload-button-container">
+        <button class="btn btn-primary toggle-upload-container">Качи</button>
+    </div>
+
+    <div class="container upload-container" style="margin-left: auto; margin-right: auto;">
+        <form action='@Url.Action("Upload")' enctype="multipart/form-data" class="dropzone" id="upload" />
+    </div>
+
+    <div id="links">
+        @Html.Partial("_Gallery", Model)
+    </div>
+
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
+        <!-- The container for the modal slides -->
+        <div class="slides"></div>
+        <!-- Controls for the borderless lightbox -->
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+        <!-- The modal dialog, which will be used to wrap the lightbox content -->
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body next"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left prev">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Previous
+                        </button>
+                        <button type="button" class="btn btn-primary next">
+                            Next
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles
+{
+    <link href="~/Content/blueimp-gallery.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-image-gallery.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/Scripts/dropzone/dropzone.js"></script>
+    <script src="~/Scripts/jquery.blueimp-gallery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-image-gallery.min.js" type="text/javascript"></script>
+    <script>
+        Dropzone.options.upload = {
+            init: function () {
+                var $container = $('#links');
+
+                this.on('success', function (status, response) {
+                    var $element = $(response);
+
+                    $element.addClass('new-element');
+                    $container.prepend($element);
+
+                    $element.show(1500);
+                });
+            }
+        }
+
+        $('.toggle-upload-container').click(function () {
+            var $uploadContainer = $('.upload-container');
+            if ($uploadContainer.css('display') == 'none') {
+                $uploadContainer.show(2000);
+            } else {
+                $uploadContainer.hide(2000);
+            }
+        });
+
+        $('#links').on('change', '.show-checkbox', function (ev) {
+            var $this = $(this),
+                elementID = $this.parent().attr('id'),
+                value = $this.is(':checked') ? true : false,
+                url = '@Url.Action("ShowImage")' + '/' + elementID.toString() + '?showImage=' + value.toString();
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                success: function (data, status) {
+                    if (data.IsShown) {
+                        toastr.success('Изображението се показва.');
+                    } else {
+                        toastr.success('Изображението е скрито.');
+                    }
+                },
+                error: function () {
+                    toastr.error('Възникна грешка при промяната на изображението.');
+                }
+            })
+        });
+
+        $('#links').on('click', '.delete-image', function () {
+            var confirmResult = confirm('Сигурен ли си, че искаш да изтриеш това изображение?'),
+                $this = $(this),
+                elementID = $this.parent().attr('id'),
+                url = '@Url.Action("DeleteImage")' + '/' + elementID.toString();
+
+            if (confirmResult) {
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    success: function (data, status) {
+                        if (data === true)
+                        {
+                            toastr.success('Изображението е изтрито успешно!');
+                            $this.parent().hide(2000);
+                        } else {
+                            toastr.error('Възникна проблем при триенето на изображението!');
+                        }
+                    },
+                    error: function () {
+                        toastr.error('Възникна проблем при триенето на изображениет!');
+                    }
+                })
+            }
+        });
+
+        $('#links').on('focusout', '.form-control', function (ev) {
+            var $this = $(this),
+                elementID = $this.parent().attr('id'),
+                caption = $this.val(),
+                url = '@Url.Action("UpdateContent")' + '/' + elementID.toString() + '?caption=' + caption;
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                success: function (data, status) {
+                    if (status !== 'notmodified') {
+                        toastr['success']('Успешно сменено описание!');
+                    }
+                },
+                error: function () {
+                    toastr['error']('Възникна проблем при смяната на описанието!')
+                }
+            });
+        });
+    </script>
+}

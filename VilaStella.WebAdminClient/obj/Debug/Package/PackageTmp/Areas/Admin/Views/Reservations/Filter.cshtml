@@ -1,0 +1,18 @@
+﻿@model IEnumerable<VilaStella.WebAdminClient.Models.ReservationsOutputModel>
+@{
+    ViewBag.Title = "Filter";
+}
+
+<div class="main-container">
+    @{
+        Html.RenderAction("FilterForm");
+    }
+
+    @Html.Partial("_ReservationsTable", Model)
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/App/Admin/helpers.js"></script>
+    <script src="~/Scripts/App/Admin/filter-functions.js"></script>
+}
