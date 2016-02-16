@@ -20,7 +20,7 @@ namespace VilaStella.WebAdminClient.Controllers
         private IOverlapDatesManager datesManager;
         private IEmailManager emailManager;
 
-        public HomeController(IDeletableRepository<VilaStella.Models.Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations, IReservationManager reservationManager, IOverlapDatesManager datesManager, IEmailManager emailManager)
+        public HomeController(IDeletableRepository<Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations, IReservationManager reservationManager, IOverlapDatesManager datesManager, IEmailManager emailManager)
         {
             this.images = images;
             this.settings = settings;
@@ -36,7 +36,7 @@ namespace VilaStella.WebAdminClient.Controllers
                 .OrderByDescending(x => x.ID)
                 .FirstOrDefault();
 
-            bool areReservationsOpen = currentSetings.AreReservationsOpen;
+            var areReservationsOpen = currentSetings.AreReservationsOpen;
             return View(areReservationsOpen);
         }
 

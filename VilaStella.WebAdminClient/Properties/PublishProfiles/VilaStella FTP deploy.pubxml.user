@@ -200,34 +200,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2015 00:15:18</publishTime>
     </File>
     <File Include="bin/VilaStella.Data.Common.dll">
-      <publishTime>04/27/2015 00:16:36</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.Data.Common.pdb">
-      <publishTime>04/27/2015 00:16:36</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.Data.dll">
-      <publishTime>05/26/2015 16:08:36</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.Data.pdb">
-      <publishTime>05/26/2015 16:08:36</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.Models.dll">
-      <publishTime>05/26/2015 16:08:34</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.Models.pdb">
-      <publishTime>05/26/2015 16:08:34</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.Web.Common.dll">
-      <publishTime>05/26/2015 16:08:36</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.Web.Common.pdb">
-      <publishTime>05/26/2015 16:08:36</publishTime>
+      <publishTime>05/30/2015 10:52:10</publishTime>
     </File>
     <File Include="bin/VilaStella.WebAdminClient.dll">
-      <publishTime>05/26/2015 22:31:47</publishTime>
+      <publishTime>05/30/2015 10:52:11</publishTime>
     </File>
     <File Include="bin/VilaStella.WebAdminClient.pdb">
-      <publishTime>05/26/2015 22:31:47</publishTime>
+      <publishTime>05/30/2015 10:52:11</publishTime>
     </File>
     <File Include="bin/WebActivatorEx.dll">
       <publishTime>04/27/2015 00:15:18</publishTime>
@@ -500,7 +500,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/26/2015 10:44:05</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>05/25/2015 17:15:50</publishTime>
+      <publishTime>05/30/2015 10:52:07</publishTime>
     </File>
     <File Include="Views/Shared/DisplayTemplates/DateTime.cshtml">
       <publishTime>04/27/2015 00:15:16</publishTime>
@@ -527,7 +527,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/27/2015 00:15:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/25/2015 17:15:57</publishTime>
+      <publishTime>05/27/2015 16:40:08</publishTime>
     </File>
     <File Include="Views/Shared/_Reservation.cshtml">
       <publishTime>05/26/2015 00:13:07</publishTime>

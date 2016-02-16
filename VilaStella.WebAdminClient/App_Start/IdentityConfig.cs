@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using VilaStella.Data;
 using VilaStella.Models;
 using VilaStella.WebAdminClient.Models;
@@ -33,7 +35,7 @@ namespace VilaStella.WebAdminClient
             {
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = false,
-                RequireDigit = true,
+                RequireDigit = false,
                 RequireLowercase = false,
                 RequireUppercase = false,
             };

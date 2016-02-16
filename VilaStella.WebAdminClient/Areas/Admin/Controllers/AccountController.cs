@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Jint.Parser.Ast;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -35,7 +36,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
                 this._userManager = value;
             }
         }
-
+        
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -74,6 +75,35 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
 
             // If we got this far, something failed, redisplay form
             return RedirectToLocal(returnUrl);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Register(string returnUrl)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel registerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = new ApplicationUser()
+                {
+                    UserName = registerModel.Email,
+                    Email = registerModel.Email
+                };
+
+                IdentityResult result = await UserManager.CreateAsync(user, registerModel.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+
+            return View(registerModel);
         }
 
         // POST: /Account/LogOff
