@@ -18,9 +18,9 @@ namespace VilaStella.WebAdminClient.Infrastructure
         private const string OVERLAPPING_RESERVATION_DATES = "Припокриване на дати за резервация";
         private const int ROOMS_COUNT = 2;
 
-        private IDeletableRepository<Reservation> reservations;
-        private ICalculatePricing pricingCalculator;
-        private IOverlapDatesManager datesManager;
+        private readonly IDeletableRepository<Reservation> reservations;
+        private readonly ICalculatePricing pricingCalculator;
+        private readonly IOverlapDatesManager datesManager;
 
         public ReservationManager(IDeletableRepository<Reservation> reservations, ICalculatePricing pricingCalculator, IOverlapDatesManager datesManager)
         {

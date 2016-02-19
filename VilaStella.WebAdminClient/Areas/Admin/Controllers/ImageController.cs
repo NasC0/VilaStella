@@ -8,17 +8,20 @@ using AutoMapper.QueryableExtensions;
 using VilaStella.Data.Common.Repositories;
 using VilaStella.Models;
 using VilaStella.WebAdminClient.Areas.Admin.ViewModels;
+using VilaStella.WebAdminClient.Infrastructure.Contracts;
 
 namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
 {
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     public class ImageController : Controller
     {
-        public IDeletableRepository<Image> images;
+        private readonly IDeletableRepository<Image> images;
+        private readonly IImageProcessor _imageProcessor;
 
-        public ImageController(IDeletableRepository<Image> images)
+        public ImageController(IDeletableRepository<Image> images, IImageProcessor imageProcessor)
         {
             this.images = images;
+            this._imageProcessor = imageProcessor;
         }
 
         // GET: Admin/Image
@@ -44,7 +47,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
                 {
                     var currentFile = Request.Files[file];
 
-                    var byteStream = GetImageByteArray(currentFile.InputStream);
+                    var byteStream = _imageProcessor.GetImageByteArray(currentFile.InputStream);
                     string fileName = currentFile.FileName;
                     string contentType = currentFile.ContentType;
 
@@ -103,8 +106,9 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
 
                 this.images.Update(image);
                 this.images.SaveChanges();
-                
-                var imageShown = new {
+
+                var imageShown = new
+                {
                     IsShown = image.IsShown
                 };
 
@@ -140,42 +144,46 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
             {
                 return new FileContentResult(image.Picture, image.ImageType);
             }
-            else
+
+            return null;
+        }
+
+        [AllowAnonymous]
+        public FileContentResult GetImageThumbnailPercent(int id, int percentageResize)
+        {
+            var image = this.images.GetById(id);
+            if (image != null)
             {
-                return null;
+                var resizedImage = this._imageProcessor.ResizeImageByteArray(image.Picture, percentageResize);
+                return new FileContentResult(resizedImage, image.ImageType);
             }
+
+            return null;
+        }
+
+        [AllowAnonymous]
+        public FileContentResult GetImageThumbnailAbsolute(int id, int width, int height)
+        {
+            var image = this.images.GetById(id);
+            if (image != null)
+            {
+                var resizedImage = this._imageProcessor.ResizeImageByteArray(image.Picture, width, height);
+                return new FileContentResult(resizedImage, image.ImageType);
+            }
+
+            return null;
         }
 
         [AllowAnonymous]
         public ActionResult RenderImage(int id)
         {
-                var image = this.images.All()
-                    .Where(x => x.ID == id)
-                    .Project()
-                    .To<ImageOutputModel>()
-                    .FirstOrDefault();
+            var image = this.images.All()
+                .Where(x => x.ID == id)
+                .Project()
+                .To<ImageOutputModel>()
+                .FirstOrDefault();
 
             return PartialView("_GalleryImage", image);
-        }
-
-        private byte[] GetImageByteArray(System.IO.Stream inputStream)
-        {
-            byte[] resultArray;
-
-            using (var stream = inputStream)
-            {
-                var memoryStream = stream as MemoryStream;
-
-                if (memoryStream == null)
-                {
-                    memoryStream = new MemoryStream();
-                    stream.CopyTo(memoryStream);
-                }
-
-                resultArray = memoryStream.ToArray();
-            }
-
-            return resultArray;
         }
     }
 }

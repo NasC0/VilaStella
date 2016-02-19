@@ -1,4 +1,7 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -67,10 +70,39 @@ namespace VilaStella.WebAdminClient
 
     public class EmailService : IIdentityMessageService
     {
+        public SmtpClient EmailClient { get; private set; }
+
+        public EmailService()
+        {
+            this.EmailClient = new SmtpClient("vilastella.com");
+            this.EmailClient.UseDefaultCredentials = false;
+            this.EmailClient.Credentials = new NetworkCredential("noreply@vilastella.com", "vilastellabot");
+            this.EmailClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+        }
+
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            MailMessage generatedEmail = GenerateMailMessage(message);
+
+            try
+            {
+                EmailClient.Send(generatedEmail);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(false);
+            }
+
+            return Task.FromResult(true);
+        }
+
+        private MailMessage GenerateMailMessage(IdentityMessage message)
+        {
+            MailMessage email = new MailMessage("noreply@vilastella.com", message.Destination, message.Subject, message.Body);
+
+            email.IsBodyHtml = true;
+
+            return email;
         }
     }
 

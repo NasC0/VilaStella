@@ -4,7 +4,7 @@
     ViewBag.Title = "Register";
 }
 
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalWindow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,10 +12,9 @@
                 <h4 class="modal-title text-center" id="myModalLabel">Регистриране</h4>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "loginForm", @class = "form-horizontal" }))
+                @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "modalForm", @class = "form-horizontal" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary()
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Email, new { @class = "col-md-4 control-label" })
@@ -42,7 +41,7 @@
                     </div>
 
                     <div class="row text-center">
-                        <button class="btn btn-primary submit-login" data-loading-text="Регистриране">Регистрирай се</button>
+                        <button class="btn btn-primary submit-button" data-loading-text="Регистриране">Регистрирай се</button>
                     </div>
                 }
             </div>
@@ -51,22 +50,6 @@
 </div>
 
 @section scripts {
-    <script>
-        $(function () {
-            $('#loginModal').modal('show');
-
-            $('#loginModal').on('hide.bs.modal', function (e) {
-                $('#loginForm').submit();
-                preventDefault();
-            });
-
-            $('.submit-login').on('click', function () {
-                $('#loginForm').validate({
-                    submitHandler: function (form) {
-                        $('.submit-login').button('loading');
-                    }
-                });
-            })
-        });
-    </script>
+    <script src="~/Scripts/App/Shared/initialize-modal.js"></script>
+    <script src="~/Scripts/App/Shared/validate-modal.js"></script>
 }

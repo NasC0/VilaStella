@@ -28,5 +28,7 @@ namespace VilaStella.Models
         public bool PreserveCreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+        public virtual Guid? PasswordResetKey { get; set; }
     }
 }

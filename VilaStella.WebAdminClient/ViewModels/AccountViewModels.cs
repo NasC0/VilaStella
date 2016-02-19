@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace VilaStella.WebAdminClient.Models
 {
@@ -73,8 +74,6 @@ namespace VilaStella.WebAdminClient.Models
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
@@ -88,6 +87,7 @@ namespace VilaStella.WebAdminClient.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         public string Code { get; set; }
     }
 

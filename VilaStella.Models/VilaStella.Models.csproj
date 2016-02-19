@@ -55,6 +55,7 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="EmailType.cs" />
+    <Compile Include="ForgottenPassword.cs" />
     <Compile Include="GeneralSettings.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="PaymentMethod.cs" />

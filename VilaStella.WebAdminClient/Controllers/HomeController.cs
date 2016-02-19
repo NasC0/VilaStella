@@ -18,16 +18,16 @@ namespace VilaStella.WebAdminClient.Controllers
         private IDeletableRepository<Reservation> reservations;
         private IReservationManager reservationManager;
         private IOverlapDatesManager datesManager;
-        private IEmailManager emailManager;
+        private IReservationsEmailManager _reservationsEmailManager;
 
-        public HomeController(IDeletableRepository<Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations, IReservationManager reservationManager, IOverlapDatesManager datesManager, IEmailManager emailManager)
+        public HomeController(IDeletableRepository<Image> images, IGenericRepositoy<GeneralSettings> settings, IDeletableRepository<Reservation> reservations, IReservationManager reservationManager, IOverlapDatesManager datesManager, IReservationsEmailManager _reservationsEmailManager)
         {
             this.images = images;
             this.settings = settings;
             this.reservations = reservations;
             this.reservationManager = reservationManager;
             this.datesManager = datesManager;
-            this.emailManager = emailManager;
+            this._reservationsEmailManager = _reservationsEmailManager;
         }
 
         public ActionResult Index()
@@ -52,7 +52,7 @@ namespace VilaStella.WebAdminClient.Controllers
                 var dbResrvation = this.reservationManager.CreateReservation(reservation, isSeenInNewTab);
 
                 this.reservations.Add(dbResrvation);
-                this.emailManager.SendConfirmationEmail(dbResrvation);
+                this._reservationsEmailManager.SendConfirmationEmail(dbResrvation);
                 this.reservations.SaveChanges();
 
                 return Json(true);

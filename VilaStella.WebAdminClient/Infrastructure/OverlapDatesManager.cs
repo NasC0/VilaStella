@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using VilaStella.Data.Common.Repositories;
 using VilaStella.Models;
 using VilaStella.WebAdminClient.Models;
@@ -13,7 +12,7 @@ namespace VilaStella.WebAdminClient.Infrastructure
     {
         private const string DATE_FORMAT = "dd.M.yyyy";
 
-        private IDeletableRepository<Reservation> reservations;
+        private readonly IDeletableRepository<Reservation> reservations;
 
         public OverlapDatesManager(IDeletableRepository<Reservation> reservations)
         {

@@ -230,10 +230,11 @@
     <Compile Include="Areas\Admin\Controllers\ReservationsController.cs" />
     <Compile Include="Areas\Admin\ViewModels\ImageOutputModel.cs" />
     <Compile Include="Infrastructure\AllowCrossSiteOrigin.cs" />
-    <Compile Include="Infrastructure\Contracts\IEmailManager.cs" />
+    <Compile Include="Infrastructure\Contracts\IImageProcessor.cs" />
+    <Compile Include="Infrastructure\Contracts\IReservationsEmailManager.cs" />
     <Compile Include="Infrastructure\EmailInfo.cs" />
-    <Compile Include="Infrastructure\EmailManager.cs" />
-    <Compile Include="Infrastructure\PayPalManager.cs" />
+    <Compile Include="Infrastructure\ImageProcessor.cs" />
+    <Compile Include="Infrastructure\ReservationsEmailManager.cs" />
     <Compile Include="ViewModels\ReservationsInputModel.cs" />
     <Compile Include="ViewModels\ReservationsOutputModel.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
@@ -247,7 +248,6 @@
     <Compile Include="Infrastructure\CalculatePricing.cs" />
     <Compile Include="Infrastructure\Contracts\ICalculatePricing.cs" />
     <Compile Include="Infrastructure\Contracts\IOverlapDatesManager.cs" />
-    <Compile Include="Infrastructure\Contracts\IPayPalManager.cs" />
     <Compile Include="Infrastructure\Contracts\IReservationManager.cs" />
     <Compile Include="Infrastructure\OverlapDatesManager.cs" />
     <Compile Include="Infrastructure\Pricing.cs" />
@@ -278,6 +278,7 @@
     <Content Include="Content\grid.css" />
     <Content Include="Content\icomoon.css" />
     <Content Include="Content\img\LibSociety.jpg" />
+    <Content Include="Content\img\play-pause.png" />
     <Content Include="Content\img\spinner.gif" />
     <Content Include="Content\jqueryui-theme.min.css" />
     <Content Include="Content\map-marker.png" />
@@ -295,6 +296,8 @@
     <Content Include="Scripts\App\Root\pricing-module.js" />
     <Content Include="Scripts\App\Root\reservation-module.js" />
     <Content Include="Scripts\App\Shared\datepicker-module.js" />
+    <Content Include="Scripts\App\Shared\initialize-modal.js" />
+    <Content Include="Scripts\App\Shared\validate-modal.js" />
     <Content Include="Scripts\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -334,6 +337,11 @@
     <Content Include="Views\Shared\_GalleryImage.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ReservationForm.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ForgottenPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\PasswordResetEmailNotFound.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\PasswordResetEmailSent.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\ResetPassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\PasswordResetMismatch.cshtml" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\VilaStella FTP deploy.pubxml" />
     <None Include="Properties\PublishProfiles\vilastella.com - Web Deploy %282%29.pubxml" />

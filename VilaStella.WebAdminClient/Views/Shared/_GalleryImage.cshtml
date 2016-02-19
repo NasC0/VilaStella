@@ -13,7 +13,7 @@
         <a href="#" class="fa fa-times fa-2x delete-image"></a>
     }
     <a href='@Url.Action("GetImage", "Image", new { area = "Admin", id = Model.ID })' title="@Model.Caption" data-gallery>
-        <img src='@Url.Action("GetImage", "Image", new { area = "Admin", id = Model.ID })' class="img-responsive thumb" />
+        <img src='@Url.Action("GetImageThumbnailAbsolute", "Image", new { area = "Admin", id = Model.ID, width = 350, height = 260 })' class="img-responsive thumb" />
     </a>
 
     @if (Request.IsAuthenticated)
