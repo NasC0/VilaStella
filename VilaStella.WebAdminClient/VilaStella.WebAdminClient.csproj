@@ -233,6 +233,7 @@
     <Compile Include="Infrastructure\Contracts\IImageProcessor.cs" />
     <Compile Include="Infrastructure\Contracts\IReservationsEmailManager.cs" />
     <Compile Include="Infrastructure\EmailInfo.cs" />
+    <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\ImageProcessor.cs" />
     <Compile Include="Infrastructure\ReservationsEmailManager.cs" />
     <Compile Include="ViewModels\ReservationsInputModel.cs" />

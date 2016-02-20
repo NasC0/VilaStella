@@ -16,23 +16,23 @@ namespace VilaStella.Web.Common.Factories
         {
             IFilterStrategy filterStrategy = null;
 
-            if (options.Filter == FilterBy.Name)
+            if (options.Filter == FilterBy.Name && !string.IsNullOrEmpty(options.Name))
             {
                 filterStrategy = new NameFilter(options);
             }
-            else if (options.Filter == FilterBy.Email)
+            else if (options.Filter == FilterBy.Email && !string.IsNullOrEmpty(options.Email))
             {
                 filterStrategy = new EmailFilter(options);
             }
-            else if (options.Filter == FilterBy.Phone)
+            else if (options.Filter == FilterBy.Phone && !string.IsNullOrEmpty(options.Phone))
             {
                 filterStrategy = new PhoneFilter(options);
             }
-            else if (options.Filter == FilterBy.From)
+            else if (options.Filter == FilterBy.From && options.From.HasValue)
             {
                 filterStrategy = new FromFilter(options);
             }
-            else if (options.Filter == FilterBy.To)
+            else if (options.Filter == FilterBy.To && options.To.HasValue)
             {
                 filterStrategy = new ToFilter(options);
             }
@@ -40,7 +40,7 @@ namespace VilaStella.Web.Common.Factories
             {
                 filterStrategy = new StatusFIlter(options);
             }
-            else if (options.Filter == FilterBy.Date)
+            else if (options.Filter == FilterBy.Date && options.Date.HasValue)
             {
                 filterStrategy = new DateFilter(options);
             }

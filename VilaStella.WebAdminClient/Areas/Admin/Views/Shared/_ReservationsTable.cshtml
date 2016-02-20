@@ -1,78 +1,80 @@
 ﻿@model IEnumerable<VilaStella.WebAdminClient.Models.ReservationsOutputModel>
 
 <div class="container-fluid">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>N</th>
-                <th>Име</th>
-                <th>Email</th>
-                <th>Телефон</th>
-                <th>От</th>
-                <th>До</th>
-                <th>Капаро</th>
-                <th>Цена</th>
-                <th>Брой души</th>
-                <th>Плащане</th>
-                <th>Статус</th>
-                <th>Промени</th>
-                <th>Изтрий</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                int startNumber = ViewBag.CountStart;
-            }
-
-            @foreach (var reservation in Model)
-            {
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>
-                        @(++startNumber)
-                    </td>
+                    <th>N</th>
+                    <th>Име</th>
+                    <th>Email</th>
+                    <th>Телефон</th>
+                    <th>От</th>
+                    <th>До</th>
+                    <th>Капаро</th>
+                    <th>Цена</th>
+                    <th>Брой души</th>
+                    <th>Плащане</th>
+                    <th>Статус</th>
+                    <th>Промени</th>
+                    <th>Изтрий</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int startNumber = ViewBag.CountStart;
+                }
 
-                    <td>@(reservation.FullName)</td>
-                    <td>@reservation.Email</td>
-                    <td>@reservation.Phone</td>
-                    <td>@Html.DisplayFor(x => reservation.From)</td>
-                    <td>@Html.DisplayFor(x => reservation.To)</td>
-                    <td>@Html.DisplayFor(x => reservation.Capparo)</td>
-                    <td>@Html.DisplayFor(x => reservation.FullPrice)</td>
-                    <td>@Html.DisplayFor(x => reservation.PartySize)</td>
-                    <td>@Html.DisplayFor(x => reservation.PaymentMethod)</td>
-                    <td>
-                        @using (@Ajax.BeginForm("ChangeStatus", "Reservations", new AjaxOptions
-                                {
-                                    InsertionMode = InsertionMode.Replace,
-                                    HttpMethod = "POST",
-                                    UpdateTargetId = reservation.ID.ToString(),
-                                    OnSuccess = "successfullStatusChange",
-                                    OnFailure = "failedStatusChange"
-                                }
-                                ))
-                        {
-                            <div id="@reservation.ID">
-                                @Html.Partial("_ChangeStatus", new VilaStella.WebAdminClient.Areas.Admin.ViewModels.StatusChangeInputModel
-                       {
-                           ID = reservation.ID,
-                           Status = reservation.Status
-                       })
-                            </div>
-                        }
-                    </td>
-                    <td>
-                        @Html.ActionLink("Промени", "Edit", "Reservations", new { id = reservation.ID }, null)
-                    </td>
-                    <td>
-                        @Ajax.ActionLink("Изтрий", "Delete", new { id = reservation.ID }, new AjaxOptions
+                @foreach (var reservation in Model)
+            {
+                    <tr>
+                        <td>
+                            @(++startNumber)
+                        </td>
+
+                        <td>@(reservation.FullName)</td>
+                        <td>@reservation.Email</td>
+                        <td>@reservation.Phone</td>
+                        <td>@Html.DisplayFor(x => reservation.From)</td>
+                        <td>@Html.DisplayFor(x => reservation.To)</td>
+                        <td>@Html.DisplayFor(x => reservation.Capparo)</td>
+                        <td>@Html.DisplayFor(x => reservation.FullPrice)</td>
+                        <td>@Html.DisplayFor(x => reservation.PartySize)</td>
+                        <td>@Html.DisplayFor(x => reservation.PaymentMethod)</td>
+                        <td>
+                            @using (@Ajax.BeginForm("ChangeStatus", "Reservations", new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST",
+                                UpdateTargetId = reservation.ID.ToString(),
+                                OnSuccess = "successfullStatusChange",
+                                OnFailure = "failedStatusChange"
+                            }
+))
+                            {
+                                <div id="@reservation.ID">
+                                    @Html.Partial("_ChangeStatus", new VilaStella.WebAdminClient.Areas.Admin.ViewModels.StatusChangeInputModel
+                           {
+                               ID = reservation.ID,
+                               Status = reservation.Status
+                           })
+                                </div>
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Промени", "Edit", "Reservations", new { id = reservation.ID }, null)
+                        </td>
+                        <td>
+                            @Ajax.ActionLink("Изтрий", "Delete", "Reservations", new { id = reservation.ID }, new AjaxOptions
                    {
                        HttpMethod = "POST",
                        OnSuccess = "SuccessfullyDeletedEntry(data)",
                        OnFailure = "FailedDeleteEntry"
                    }, new { @class = "delete-link" })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

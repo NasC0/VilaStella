@@ -76,7 +76,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
                 if (user != null)
                 {
                     await this.SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal("/Admin");
                 }
                 else
                 {

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Routing;
 using AutoMapper.QueryableExtensions;
 using VilaStella.Data.Common.Repositories;
 using VilaStella.Models;
@@ -35,14 +36,14 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
         }
 
         // GET: Admin/Basic
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, FilterOptions options)
         {
             var allReservations = this.reservations.All();
             var pagination = this.Paginate(page, allReservations.Count());
 
             if (pagination.IsRedirect)
             {
-                return RedirectToAction("Index", new { page = pagination.Page });
+                return Index(pagination.Page, options);
             }
 
             ViewBag.CurrentPage = pagination.Page;
@@ -50,14 +51,21 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
             // Holds the view numbering of the reservations
             ViewBag.CountStart = pagination.SkipSize;
 
-            var viewReservations = allReservations
-                .OrderByDescending(x => x.CreatedOn)
-                .Skip(pagination.SkipSize)
-                .Take(PAGE_SIZE)
-                .Project()
-                .To<ReservationsOutputModel>()
-                .ToList();
+            IFilterStrategy filter = filterFactory.GetFilter(options);
 
+            if (filter != null)
+            {
+                allReservations = filter.Filter(allReservations);
+            }
+
+            IEnumerable<ReservationsOutputModel> viewReservations = allReservations
+                    .OrderByDescending(x => x.CreatedOn)
+                    .Skip(pagination.SkipSize)
+                    .Take(PAGE_SIZE)
+                    .Project()
+                    .To<ReservationsOutputModel>()
+                    .ToList();
+            
             return View(viewReservations);
         }
 
@@ -234,16 +242,7 @@ namespace VilaStella.WebAdminClient.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Filter(FilterOptions options)
         {
-            var filter = this.filterFactory.GetFilter(options);
-            var allReservations = this.reservations.All();
-            var filteredReservations = filter.Filter(allReservations)
-                .OrderByDescending(x => x.CreatedOn)
-                .Project()
-                .To<ReservationsOutputModel>()
-                .ToList();
-
-            ViewBag.CountStart = 0;
-            return View(filteredReservations);
+            return RedirectToAction("Index", options);
         }
 
         public ActionResult ChangeStatus(StatusChangeInputModel reservation)

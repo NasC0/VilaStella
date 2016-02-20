@@ -1,49 +1,67 @@
 ﻿@model VilaStella.Web.Common.Classes.FilterOptions
 
-@using(Html.BeginForm("Filter", "Reservations", FormMethod.Post))
-{
-    <div class="container">
-        @Html.LabelFor(x => x.Filter)
-        @Html.EditorFor(x => x.Filter, "FilterBy")
+<div style="margin-bottom: 5px;">
+    <div class="container-fluid">
+        @using (Html.BeginForm("Filter", "Reservations", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(x => x.Filter, "Филтрирай по")
+                @Html.EnumDropDownListFor(m => m.Filter, new { @class = "form-control filter-change" })
+            </div>
 
-        <div class="filter-elements" style="display: inline;">
-            <span class="flter-name">
-                @Html.LabelFor(x => x.Name)
-                @Html.EditorFor(x => x.Name)
-            </span>
+            <div class="filter-elements" style="display: inline;">
+                <span class="flter-name">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Name, "Име")
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </span>
 
-            <span class="flter-email">
-                @Html.LabelFor(x => x.Email)
-                @Html.EditorFor(x => x.Email)
-            </span>
+                <span class="flter-email">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Email)
+                        @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </span>
 
-            <span class="flter-phone">
-                @Html.LabelFor(x => x.Phone)
-                @Html.EditorFor(x => x.Phone)
-            </span>
+                <span class="flter-phone">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Phone, "Телефон")
+                        @Html.EditorFor(x => x.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </span>
 
 
-            <span class="flter-from">
-                @Html.LabelFor(x => x.From)
-                @Html.EditorFor(x => x.From)
-            </span>
+                <span class="flter-from">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.From, "От")
+                        @Html.EditorFor(x => x.From, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </span>
 
-            <span class="flter-to">
-                @Html.LabelFor(x => x.To)
-                @Html.EditorFor(x => x.To)
-            </span>
+                <span class="flter-to">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.To, "До")
+                        @Html.EditorFor(x => x.To, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </span>
 
-            <span class="flter-status">
-                @Html.LabelFor(x => x.Status)
-                @Html.EditorFor(x => x.Status)
-            </span>
+                <span class="flter-status">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.StatusFilter, "Статус")
+                        @Html.EnumDropDownListFor(m => m.StatusFilter, new { @class = "form-control" })
+                    </div>
+                </span>
 
-            <span class="flter-date">
-                @Html.LabelFor(x => x.Date)
-                @Html.EditorFor(x => x.Date)
-            </span>
-        </div>
+                <span class="flter-date">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Date, "Дата")
+                        @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </span>
+            </div>
 
-        <input type="submit" />
+            <input type="submit" class="btn btn-primary" value="Филтрирай" />
+        }
     </div>
-}
+</div>

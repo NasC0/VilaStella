@@ -14,7 +14,7 @@ namespace VilaStella.Web.Common.DataFilters
 
         public IQueryable<Reservation> Filter(IQueryable<Reservation> reservations)
         {
-            Status statusObject = this.filterOptions.Status;
+            Status statusObject = this.filterOptions.StatusFilter;
 
             var filteredResults = reservations
                 .Where(x => x.Status == statusObject);

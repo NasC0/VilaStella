@@ -2,4 +2,5 @@
 
 @Html.AntiForgeryToken()
 @Html.TextBoxFor(x => x.ID, new { @class = "hidden" })
-@Html.EditorFor(x => x.Status, "Enum")
+@*@Html.EditorFor(x => x.StatusFilterFilter, "Enum")*@
+@Html.EnumDropDownListFor(x => x.Status, new { @class = "form-control change-status", onchange = "statusChanged(this)"})

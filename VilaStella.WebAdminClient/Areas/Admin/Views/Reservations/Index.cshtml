@@ -1,4 +1,5 @@
 ﻿@using VilaStella.Web.Common.Classes
+@using VilaStella.WebAdminClient.Infrastructure
 
 @model IEnumerable<VilaStella.WebAdminClient.Models.ReservationsOutputModel>
 
@@ -17,18 +18,24 @@
     }
     else
     {
-        @Html.Partial("_ReservationsTable", Model)
+            @Html.Partial("_ReservationsTable", Model)
     }
 
     <div class="container text-center">
         @{
-            var previousPage = ViewBag.CurrentPage - 1;
-            var nextPage = ViewBag.CurrentPage + 1;
+            int previousPage = ViewBag.CurrentPage - 1;
+            int nextPage = ViewBag.CurrentPage + 1;
+
+            RouteValueDictionary previousDictionary = Request.QueryString.ToRouteValueDictionary();
+            previousDictionary.Add("page", previousPage);
+
+            RouteValueDictionary nextDictionary = Request.QueryString.ToRouteValueDictionary();
+            nextDictionary.Add("page", nextPage);
         }
         <div>
-            <a href="@Url.Action("Index", "Reservations", new { page = previousPage })" class="fa fa-chevron-left fa-2x"></a>
+            <a href="@Url.Action("Index", "Reservations", previousDictionary)" class="fa fa-chevron-left fa-2x"></a>
             <p style="display: inline-block; font-size: 35px;">@ViewBag.CurrentPage</p>
-            <a href="@Url.Action("Index", "Reservations", new { page = nextPage })" class="fa fa-chevron-right fa-2x"></a>
+            <a href="@Url.Action("Index", "Reservations", nextDictionary)" class="fa fa-chevron-right fa-2x"></a>
         </div>
     </div>
 </div>

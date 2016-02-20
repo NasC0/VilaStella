@@ -24,7 +24,7 @@ namespace VilaStella.Web.Common.Classes
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}")]
         public DateTime? To { get; set; }
 
-        public Status Status { get; set; }
+        public Status StatusFilter { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}")]
